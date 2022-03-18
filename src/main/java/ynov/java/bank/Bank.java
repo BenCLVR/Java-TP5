@@ -1,5 +1,9 @@
 package ynov.java.bank;
 
+import java.awt.BorderLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -20,39 +24,64 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class Bank {
 
 	public Bank() {
-		JFrame frame = new JFrame("Exemple");
-
+		
 		JPanel mainpanel = new JPanel();
-		JPanel paneltext = new JPanel();
+		JPanel panelpseudo = new JPanel();
+		JPanel panelpass = new JPanel();
+		JPanel panelname = new JPanel();
+		
 
 		JLabel labelpseudo = new JLabel("Pseudo");
-		JTextField pseudo = new JTextField();
+		JTextField pseudo = new JTextField(10);
 		JLabel labelpw = new JLabel("Password");
-		JTextField password = new JTextField();
-		final JLabel labelnom = new JLabel("Nom");
-		final JTextField nom = new JTextField();
+		JTextField password = new JTextField(10);
+		final JLabel labelname = new JLabel("Nom");
+		final JTextField name = new JTextField(10);
 		final JButton button = new JButton("Sign Up");
+		JButton buttonok = new JButton("Validate");
 		
-		labelnom.setVisible(false);
-		nom.setVisible(false);
+		panelpseudo.add(labelpseudo);
+		panelpseudo.add(pseudo);
+		panelpass.add(labelpw);
+		panelpass.add(password);
+		panelname.add(labelname);
+		panelname.add(name);
+		mainpanel.add(button);
+		mainpanel.add(panelpseudo);
+		mainpanel.add(panelpass);
+		mainpanel.add(panelname);
+		
+		
+		labelname.setVisible(false);
+		
+		JFrame frame = new JFrame("Exemple");
+		mainpanel.setLayout(new GridBagLayout());
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.fill = GridBagConstraints.BOTH;
+		
+		gbc.insets = new Insets(5,5,5,5);
+		gbc.weightx = 1;
+		gbc.weighty = 1;
 
-		Object[] form = new Object[] {labelpseudo, pseudo, labelpw, password, labelnom, nom, button};
+		gbc.gridx = 0; gbc.gridy = 0; gbc.gridwidth = 1; mainpanel.add(panelpseudo, gbc);
+		gbc.gridx = 1; gbc.gridy = 0;  gbc.gridwidth = 1; mainpanel.add(panelpass, gbc);
+		gbc.gridx = 2; mainpanel.add(panelname, gbc);
+		gbc.gridx = 0; gbc.gridy = 1; gbc.gridwidth = 0; mainpanel.add(button, gbc);
+		gbc.gridx = 0; gbc.gridy = 2; gbc.gridwidth = 3; mainpanel.add(buttonok, gbc);
 
-		int result = JOptionPane.showOptionDialog(
-				frame,
-				form,
-				"Ajout Formateur",
-				JOptionPane.OK_CANCEL_OPTION,
-				JOptionPane.INFORMATION_MESSAGE,
-				null,
-				null,
-				null
-				);
+		
+
+		name.setVisible(false);
+		
+
+		
+		
 
 
-
+		frame.add(mainpanel);
 		frame.setSize(700, 400);
 		frame.setVisible(true);
+		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		
@@ -60,9 +89,17 @@ public class Bank {
 
 			public void actionPerformed(ActionEvent e) {
 				
-				labelnom.setVisible(true);
-				nom.setVisible(true);
-				button.setText("Login");
+				if(button.getText().equals("Sign Up")) {
+					labelname.setVisible(true);
+					name.setVisible(true);
+					button.setText("Login");
+				}
+				else {
+					labelname.setVisible(false);
+					name.setVisible(false);
+					button.setText("Sign Up");
+				}
+				
 				
 			}
 
