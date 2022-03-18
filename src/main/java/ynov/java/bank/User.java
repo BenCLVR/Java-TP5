@@ -8,6 +8,11 @@ public class User {
 	String password;
 	
 	User() {}
+	User(int id, String nom, String pseudo, String password) {
+		this.id = id;
+		this.nom = nom;
+		this.password = password;
+	}
 
 	public int getId() {
 		return id;
