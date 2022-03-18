@@ -104,5 +104,21 @@ public class Bank {
 			}
 
 		});
+		
+		buttonok.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				
+				if(button.getText().equals("Sign Up")) {
+					
+				}
+				else {
+
+				}
+				
+				
+			}
+
+		});
 	}
 }
