@@ -25,13 +25,11 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-
-public class Bank
-{
+public class Bank {
 	// VARIABLES POOL
 	private ArrayList<BankAccount> bankAccountPool = new ArrayList<BankAccount>();
 	private ArrayList<User> userPool = new ArrayList<User>();
-	
+
 	// JACKSON my boy
 	private ObjectMapper objectMapper = new ObjectMapper();
 	private String dir = System.getProperty("user.dir");
@@ -39,12 +37,11 @@ public class Bank
 	private String usersJsonFilePath = "\\ressources\\users.json";
 
 	public Bank() {
-		
+
 		JPanel mainpanel = new JPanel();
 		JPanel panelpseudo = new JPanel();
 		JPanel panelpass = new JPanel();
 		JPanel panelname = new JPanel();
-		
 
 		JLabel labelpseudo = new JLabel("Pseudo");
 		JTextField pseudo = new JTextField(10);
@@ -54,7 +51,7 @@ public class Bank
 		final JTextField name = new JTextField(10);
 		final JButton button = new JButton("Sign Up");
 		JButton buttonok = new JButton("Validate");
-		
+
 		panelpseudo.add(labelpseudo);
 		panelpseudo.add(pseudo);
 		panelpass.add(labelpw);
@@ -65,87 +62,85 @@ public class Bank
 		mainpanel.add(panelpseudo);
 		mainpanel.add(panelpass);
 		mainpanel.add(panelname);
-		
-		
+
 		labelname.setVisible(false);
-		
+
 		JFrame frame = new JFrame("Exemple");
 		mainpanel.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.fill = GridBagConstraints.BOTH;
-		
-		gbc.insets = new Insets(5,5,5,5);
+
+		gbc.insets = new Insets(5, 5, 5, 5);
 		gbc.weightx = 1;
 		gbc.weighty = 1;
 
-		gbc.gridx = 0; gbc.gridy = 0; gbc.gridwidth = 1; mainpanel.add(panelpseudo, gbc);
-		gbc.gridx = 1; gbc.gridy = 0;  gbc.gridwidth = 1; mainpanel.add(panelpass, gbc);
-		gbc.gridx = 2; mainpanel.add(panelname, gbc);
-		gbc.gridx = 0; gbc.gridy = 1; gbc.gridwidth = 0; mainpanel.add(button, gbc);
-		gbc.gridx = 0; gbc.gridy = 2; gbc.gridwidth = 3; mainpanel.add(buttonok, gbc);
-
-		
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		gbc.gridwidth = 1;
+		mainpanel.add(panelpseudo, gbc);
+		gbc.gridx = 1;
+		gbc.gridy = 0;
+		gbc.gridwidth = 1;
+		mainpanel.add(panelpass, gbc);
+		gbc.gridx = 2;
+		mainpanel.add(panelname, gbc);
+		gbc.gridx = 0;
+		gbc.gridy = 1;
+		gbc.gridwidth = 0;
+		mainpanel.add(button, gbc);
+		gbc.gridx = 0;
+		gbc.gridy = 2;
+		gbc.gridwidth = 3;
+		mainpanel.add(buttonok, gbc);
 
 		name.setVisible(false);
-		
-
-		
-		
-
 
 		frame.add(mainpanel);
 		frame.setSize(700, 400);
 		frame.setVisible(true);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		
 		button.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				
-				if(button.getText().equals("Sign Up")) {
+
+				if (button.getText().equals("Sign Up")) {
 					labelname.setVisible(true);
 					name.setVisible(true);
 					button.setText("Login");
-				}
-				else {
+				} else {
 					labelname.setVisible(false);
 					name.setVisible(false);
 					button.setText("Sign Up");
 				}
-				
-				
+
 			}
 
 		});
-		
+
 		buttonok.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				
-				if(button.getText().equals("Sign Up")) {
-					
-				}
-				else {
+
+				if (button.getText().equals("Sign Up")) {
+
+				} else {
 
 				}
-				
-				
+
 			}
 
 		});
 	}
-	
-	private ArrayList<BankAccount> loadBankAccounts()
-	{
+
+	private ArrayList<BankAccount> loadBankAccounts() {
 		ArrayList<BankAccount> bankAccounts = null;
 
-		try
-		{
-			bankAccounts = objectMapper.readValue(new File(this.dir + this.bankAccountsJsonFilePath), new TypeReference<ArrayList<BankAccount>>(){});
-		}
-		catch (JsonParseException e) {
+		try {
+			bankAccounts = objectMapper.readValue(new File(this.dir + this.bankAccountsJsonFilePath),
+					new TypeReference<ArrayList<BankAccount>>() {
+					});
+		} catch (JsonParseException e) {
 			e.printStackTrace();
 			bankAccounts = new ArrayList<BankAccount>();
 		} catch (JsonMappingException e) {
@@ -155,11 +150,11 @@ public class Bank
 			e.printStackTrace();
 			bankAccounts = new ArrayList<BankAccount>();
 		}
-		
+
 		return (bankAccounts);
 	}
-	private int saveBankAccounts()
-	{
+
+	private int saveBankAccounts() {
 		try {
 			objectMapper.writeValue(new File(this.dir + this.bankAccountsJsonFilePath), this.bankAccountPool);
 		} catch (JsonGenerationException e) {
@@ -174,16 +169,15 @@ public class Bank
 		}
 		return (0);
 	}
-	
-	private ArrayList<User> loadUsers()
-	{
+
+	private ArrayList<User> loadUsers() {
 		ArrayList<User> users = null;
 
-		try
-		{
-			users = objectMapper.readValue(new File(this.dir + this.usersJsonFilePath), new TypeReference<ArrayList<User>>(){});
-		}
-		catch (JsonParseException e) {
+		try {
+			users = objectMapper.readValue(new File(this.dir + this.usersJsonFilePath),
+					new TypeReference<ArrayList<User>>() {
+					});
+		} catch (JsonParseException e) {
 			e.printStackTrace();
 			users = new ArrayList<User>();
 		} catch (JsonMappingException e) {
@@ -193,11 +187,11 @@ public class Bank
 			e.printStackTrace();
 			users = new ArrayList<User>();
 		}
-		
+
 		return (users);
 	}
-	private int saveUsers()
-	{
+
+	private int saveUsers() {
 		try {
 			objectMapper.writeValue(new File(this.dir + usersJsonFilePath), this.userPool);
 		} catch (JsonGenerationException e) {
