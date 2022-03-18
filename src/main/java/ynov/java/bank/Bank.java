@@ -22,10 +22,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 public class Bank {
+	
+	JPanel currentPanel;
 
 	public Bank() {
 		
 		JPanel mainpanel = new JPanel();
+		final JPanel accountpanel = new JPanel();
 		JPanel panelpseudo = new JPanel();
 		JPanel panelpass = new JPanel();
 		JPanel panelname = new JPanel();
@@ -54,7 +57,7 @@ public class Bank {
 		
 		labelname.setVisible(false);
 		
-		JFrame frame = new JFrame("Exemple");
+		final JFrame frame = new JFrame("Exemple");
 		mainpanel.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.fill = GridBagConstraints.BOTH;
@@ -73,12 +76,23 @@ public class Bank {
 
 		name.setVisible(false);
 		
-
 		
 		
+		accountpanel.setLayout(new GridBagLayout());
+		GridBagConstraints gbc1 = new GridBagConstraints();
+		gbc1.fill = GridBagConstraints.BOTH;
+		
+		gbc1.insets = new Insets(5,5,5,5);
+		gbc1.weightx = 1;
+		gbc1.weighty = 1;
 
+		gbc1.gridx = 0; gbc1.gridy = 0; gbc1.gridwidth = 1; accountpanel.add(panelpseudo, gbc1);
+		gbc1.gridx = 1; gbc1.gridy = 0;  gbc1.gridwidth = 1; 
+		gbc1.gridx = 0; gbc1.gridy = 1; gbc1.gridwidth = 0; 
+		gbc1.gridx = 0; gbc1.gridy = 2; gbc1.gridwidth = 3;
 
-		frame.add(mainpanel);
+		currentPanel = mainpanel;
+		frame.add(currentPanel);
 		frame.setSize(700, 400);
 		frame.setVisible(true);
 		frame.setLocationRelativeTo(null);
@@ -109,13 +123,7 @@ public class Bank {
 
 			public void actionPerformed(ActionEvent e) {
 				
-				if(button.getText().equals("Sign Up")) {
-					
-				}
-				else {
-
-				}
-				
+					currentPanel = accountpanel; 
 				
 			}
 
