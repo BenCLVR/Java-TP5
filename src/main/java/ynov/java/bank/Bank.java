@@ -43,7 +43,6 @@ public class Bank {
 	public Bank() {
 
 		JPanel mainpanel = new JPanel();
-		final JPanel accountpanel = new JPanel();
 		JPanel panelpseudo = new JPanel();
 		JPanel panelpass = new JPanel();
 		JPanel panelname = new JPanel();
@@ -132,6 +131,11 @@ public class Bank {
 
 				if (button.getText().equals("Sign Up")) {
 
+					BankView test = new BankView ();
+					frame.setContentPane(test);
+					frame.repaint();
+					frame.revalidate();
+					
 				} else {
 
 				}
