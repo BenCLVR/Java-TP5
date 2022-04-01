@@ -26,6 +26,10 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Bank {
+
+	
+	JPanel currentPanel;
+
 	// VARIABLES POOL
 	private ArrayList<BankAccount> bankAccountPool = new ArrayList<BankAccount>();
 	private ArrayList<User> userPool = new ArrayList<User>();
@@ -39,6 +43,7 @@ public class Bank {
 	public Bank() {
 
 		JPanel mainpanel = new JPanel();
+		final JPanel accountpanel = new JPanel();
 		JPanel panelpseudo = new JPanel();
 		JPanel panelpass = new JPanel();
 		JPanel panelname = new JPanel();
@@ -65,7 +70,9 @@ public class Bank {
 
 		labelname.setVisible(false);
 
-		JFrame frame = new JFrame("Exemple");
+		
+		final JFrame frame = new JFrame("Exemple");
+
 		mainpanel.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.fill = GridBagConstraints.BOTH;
@@ -95,7 +102,8 @@ public class Bank {
 
 		name.setVisible(false);
 
-		frame.add(mainpanel);
+		currentPanel = mainpanel;
+		frame.add(currentPanel);
 		frame.setSize(700, 400);
 		frame.setVisible(true);
 		frame.setLocationRelativeTo(null);
@@ -127,7 +135,6 @@ public class Bank {
 				} else {
 
 				}
-
 			}
 
 		});
