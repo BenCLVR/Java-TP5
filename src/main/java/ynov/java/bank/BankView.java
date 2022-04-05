@@ -1,50 +1,95 @@
 package ynov.java.bank;
 
-import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+public class BankView extends JPanel{
 
-public class BankView extends JPanel {
-
-	public BankView() {
-		JLabel labelpseudo = new JLabel("Pseudo");
-		JTextField pseudo = new JTextField(10);
-		JLabel labelpw = new JLabel("Password");
-		JTextField password = new JTextField(10);
+	public BankView(final JFrame frame) {
 		
-		setLayout(new GridBagLayout());
-		GridBagConstraints gbc = new GridBagConstraints();
-		gbc.fill = GridBagConstraints.BOTH;
+		
+		JMenuBar menuBar = new JMenuBar();
+		JMenu options = new JMenu("Options");
+		JMenu comptes = new JMenu("Mes Comptes");
+		JMenuItem menuItemLeave = new JMenuItem("Quitter");
+		JMenuItem menuItemHome = new JMenuItem("Accueil");
+		JMenuItem menuItemListComptes = new JMenuItem("Mes Comptes");
+		JMenuItem menuItemAddComptes = new JMenuItem("Ajouter un Comptes");
+		
+		JLabel labelApp = new JLabel("Application de gestion bancaire");
+		JLabel labelVersion = new JLabel("Version 1.0");
+		JLabel labelDev = new JLabel("Joffrey Jeunehomme, Benjamin Claverie, Grégoire Bisso");
+		
+		options.add(menuItemLeave);
+		options.add(menuItemHome);
+		comptes.add(menuItemListComptes);
+		comptes.add(menuItemAddComptes);
+		menuBar.add(options);
+		menuBar.add(comptes);
+		
+		frame.setJMenuBar(menuBar);
+		
+		JPanel panelFormAuth = new JPanel();
+		
+		panelFormAuth.setLayout(new GridBagLayout());
+		panelFormAuth.setBorder(BorderFactory.createLineBorder(Color.black));
+		GridBagConstraints gbcp = new GridBagConstraints();
+		gbcp.fill = GridBagConstraints.BOTH;
 
-		gbc.insets = new Insets(5, 5, 5, 5);
-		gbc.weightx = 1;
-		gbc.weighty = 1;
+		gbcp.insets = new Insets(5, 5, 5, 5);
 
-		gbc.gridx = 0;
-		gbc.gridy = 0;
-		gbc.gridwidth = 1;
-		add(labelpseudo, gbc);
-		gbc.gridx = 1;
-		gbc.gridy = 0;
-		gbc.gridwidth = 1;
-		add(pseudo, gbc);
-		gbc.gridx = 2;
-		add(labelpw, gbc);
-		gbc.gridx = 0;
-		gbc.gridy = 1;
-		gbc.gridwidth = 0;
-		add(password, gbc);
-		gbc.gridx = 0;
-		gbc.gridy = 2;
-		gbc.gridwidth = 3;
-        
-        
+		gbcp.gridx = 0;
+		gbcp.gridy = 0;
+		
+		add(labelApp, gbcp);
+		
+		
+		
+		add(labelVersion, gbcp);
+		
+		add(labelDev, gbcp);
+		
+		
+		
+		menuItemListComptes.addActionListener(new ActionListener () {
+
+			public void actionPerformed(ActionEvent e) {
+				AccountView test = new AccountView (frame);
+				frame.setContentPane(test);
+				frame.repaint();
+				frame.revalidate();
+			};
+		});
+		
+		menuItemLeave.addActionListener(new ActionListener () {
+
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+			};
+		});
+		
+		menuItemHome.addActionListener(new ActionListener () {
+
+			public void actionPerformed(ActionEvent e) {
+				BankView test = new BankView (frame);
+				frame.setContentPane(test);
+				frame.repaint();
+				frame.revalidate();
+			};
+		});
 	}
 
 }

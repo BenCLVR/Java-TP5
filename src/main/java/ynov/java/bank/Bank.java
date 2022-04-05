@@ -1,21 +1,19 @@
 package ynov.java.bank;
 
-import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -42,67 +40,76 @@ public class Bank {
 
 	public Bank() {
 
-		JPanel mainpanel = new JPanel();
-		JPanel panelpseudo = new JPanel();
-		JPanel panelpass = new JPanel();
-		JPanel panelname = new JPanel();
-
-		JLabel labelpseudo = new JLabel("Pseudo");
-		JTextField pseudo = new JTextField(10);
-		JLabel labelpw = new JLabel("Password");
-		JTextField password = new JTextField(10);
+		
 		final JLabel labelname = new JLabel("Nom");
 		final JTextField name = new JTextField(10);
 		final JButton button = new JButton("Sign Up");
 		JButton buttonok = new JButton("Validate");
 
-		panelpseudo.add(labelpseudo);
-		panelpseudo.add(pseudo);
-		panelpass.add(labelpw);
-		panelpass.add(password);
-		panelname.add(labelname);
-		panelname.add(name);
-		mainpanel.add(button);
-		mainpanel.add(panelpseudo);
-		mainpanel.add(panelpass);
-		mainpanel.add(panelname);
+
 
 		labelname.setVisible(false);
-
 		
-		final JFrame frame = new JFrame("Exemple");
+		//FORM AUTH & GRID AUTH
+		JPanel panelFormAuth = new JPanel();
+		
+		JLabel labelpseudo = new JLabel("Pseudo");
+		JTextField pseudo = new JTextField(10);
+		JLabel labelpw = new JLabel("Password");
+		JTextField password = new JTextField(10);
+		
+		panelFormAuth.setLayout(new GridBagLayout());
+		panelFormAuth.setBorder(BorderFactory.createLineBorder(Color.black));
+		GridBagConstraints gbcp = new GridBagConstraints();
+		gbcp.fill = GridBagConstraints.BOTH;
 
-		mainpanel.setLayout(new GridBagLayout());
-		GridBagConstraints gbc = new GridBagConstraints();
-		gbc.fill = GridBagConstraints.BOTH;
+		gbcp.insets = new Insets(5, 5, 5, 5);
 
-		gbc.insets = new Insets(5, 5, 5, 5);
-		gbc.weightx = 1;
-		gbc.weighty = 1;
-
-		gbc.gridx = 0;
-		gbc.gridy = 0;
-		gbc.gridwidth = 1;
-		mainpanel.add(panelpseudo, gbc);
-		gbc.gridx = 1;
-		gbc.gridy = 0;
-		gbc.gridwidth = 1;
-		mainpanel.add(panelpass, gbc);
-		gbc.gridx = 2;
-		mainpanel.add(panelname, gbc);
-		gbc.gridx = 0;
-		gbc.gridy = 1;
-		gbc.gridwidth = 0;
-		mainpanel.add(button, gbc);
-		gbc.gridx = 0;
-		gbc.gridy = 2;
-		gbc.gridwidth = 3;
-		mainpanel.add(buttonok, gbc);
-
+		gbcp.gridx = 0;
+		gbcp.gridy = 0;
+		
+		panelFormAuth.add(labelpseudo, gbcp);
+		
+		gbcp.gridx = 0;
+		gbcp.gridy = 1;
+		
+		panelFormAuth.add(pseudo, gbcp);
+		
+		gbcp.gridx = 1;
+		gbcp.gridy = 0;
+		panelFormAuth.add(labelname, gbcp);
+		
+		gbcp.gridy = 1;
+		panelFormAuth.add(name, gbcp);
+		
+		gbcp.gridx = 2;
+		gbcp.gridy = 0;
+		panelFormAuth.add(labelpw, gbcp);
+		
+		gbcp.gridy = 1;
+		panelFormAuth.add(password, gbcp);
+		
+		gbcp.gridx = 2;
+		gbcp.gridy = 2;
+		panelFormAuth.add(button, gbcp);
+		
+		
+		gbcp.gridx = 0;
+		gbcp.gridy = 2;
+		panelFormAuth.add(buttonok, gbcp);
+		
+		
+		labelname.setVisible(false);
 		name.setVisible(false);
+		
 
-		currentPanel = mainpanel;
-		frame.add(currentPanel);
+
+		//MAIN GRID
+		final JFrame frame = new JFrame("Banco");
+		
+
+
+		frame.add(panelFormAuth);
 		frame.setSize(700, 400);
 		frame.setVisible(true);
 		frame.setLocationRelativeTo(null);
@@ -131,7 +138,7 @@ public class Bank {
 
 				if (button.getText().equals("Sign Up")) {
 
-					BankView test = new BankView ();
+					BankView test = new BankView (frame);
 					frame.setContentPane(test);
 					frame.repaint();
 					frame.revalidate();
