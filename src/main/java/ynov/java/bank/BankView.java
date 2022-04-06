@@ -20,7 +20,7 @@ public class BankView extends JPanel{
 
 	public BankView(final JFrame frame) {
 		
-		
+		//MENU BAR SUR LA FRAME
 		JMenuBar menuBar = new JMenuBar();
 		JMenu options = new JMenu("Options");
 		JMenu comptes = new JMenu("Mes Comptes");
@@ -42,10 +42,8 @@ public class BankView extends JPanel{
 		
 		frame.setJMenuBar(menuBar);
 		
-		JPanel panelFormAuth = new JPanel();
-		
-		panelFormAuth.setLayout(new GridBagLayout());
-		panelFormAuth.setBorder(BorderFactory.createLineBorder(Color.black));
+
+		//GRID PANEL BANKVIEW
 		GridBagConstraints gbcp = new GridBagConstraints();
 		gbcp.fill = GridBagConstraints.BOTH;
 
@@ -64,6 +62,7 @@ public class BankView extends JPanel{
 		
 		
 		
+		//ACTION GO LIST COMPTES
 		menuItemListComptes.addActionListener(new ActionListener () {
 
 			public void actionPerformed(ActionEvent e) {
@@ -74,6 +73,7 @@ public class BankView extends JPanel{
 			};
 		});
 		
+		//CLOSE APP
 		menuItemLeave.addActionListener(new ActionListener () {
 
 			public void actionPerformed(ActionEvent e) {
@@ -81,10 +81,23 @@ public class BankView extends JPanel{
 			};
 		});
 		
+		//GO HOME
 		menuItemHome.addActionListener(new ActionListener () {
 
 			public void actionPerformed(ActionEvent e) {
 				BankView test = new BankView (frame);
+				frame.setContentPane(test);
+				frame.repaint();
+				frame.revalidate();
+			};
+		});
+		
+		
+		//GO FORM ADD COMPTE
+		menuItemAddComptes.addActionListener(new ActionListener () {
+
+			public void actionPerformed(ActionEvent e) {
+				AddAccount test = new AddAccount (frame);
 				frame.setContentPane(test);
 				frame.repaint();
 				frame.revalidate();
