@@ -21,8 +21,6 @@ public class AddAccount extends JPanel{
 
 		
 		GridBagConstraints gbcp = new GridBagConstraints();
-		
-
 		gbcp.insets = new Insets(5, 5, 5, 5);
 
 		gbcp.gridx = 0;
@@ -131,7 +129,7 @@ public class AddAccount extends JPanel{
 		
 		btnSubmit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-                if((textField_1.getText().isEmpty())||(textField_2.getText().isEmpty())||(textField_3.getText().isEmpty())||(comboBox.getSelectedItem().equals("Select")))
+                if((textField_1.getText().isEmpty())||(textField_2.getText().isEmpty())||(textField_3.getText().isEmpty())|| (textField_4.getText().isEmpty()) ||(comboBox.getSelectedItem().equals("Select")))
                     JOptionPane.showMessageDialog(null, "Data Missing");
                 else       
                 JOptionPane.showMessageDialog(null, "Data Submitted");
@@ -143,6 +141,9 @@ public class AddAccount extends JPanel{
                 textField_1.setText(null);
                 textField_2.setText(null);
                 textField_3.setText(null);
+                textField_4.setText(null);
+                textField_4.setVisible(false);
+                lblTitu2.setVisible(false);
                 comboBox.setSelectedItem("Select");
                  
                  
