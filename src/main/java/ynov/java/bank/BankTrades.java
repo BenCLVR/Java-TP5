@@ -1,21 +1,18 @@
 package ynov.java.bank;
 
-public class BankAccount {	
+public class BankTrades {
+
 	int id;
 	User[] users;
-	BankAccountType type;
-	double amount;
+	BankAccount[] account;
 	
-	public BankAccount(int id, User[] users, BankAccountType type, double amount) {
+	public BankTrades(int id, User[] users, BankAccount[] account, BankTradesType type, double amount) {
 		super();
 		this.id = id;
 		this.users = users;
+		this.account = account;
 		this.type = type;
 		this.amount = amount;
-	}
-
-	BankAccount() {
-		
 	}
 
 	public int getId() {
@@ -34,11 +31,19 @@ public class BankAccount {
 		this.users = users;
 	}
 
-	public BankAccountType getType() {
+	public BankAccount[] getAccount() {
+		return account;
+	}
+
+	public void setAccount(BankAccount[] account) {
+		this.account = account;
+	}
+
+	public BankTradesType getType() {
 		return type;
 	}
 
-	public void setType(BankAccountType type) {
+	public void setType(BankTradesType type) {
 		this.type = type;
 	}
 
@@ -49,13 +54,12 @@ public class BankAccount {
 	public void setAmount(double amount) {
 		this.amount = amount;
 	}
+
+	BankTradesType type;
+	double amount;
 	
-	public void add(double amount) {
-		this.amount += amount;
+	public BankTrades() {
+		// TODO Auto-generated constructor stub
 	}
-	
-	public void substract(double amount) {
-		this.amount -= amount;
-	}
-	
+
 }
