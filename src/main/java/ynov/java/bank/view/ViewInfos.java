@@ -1,4 +1,4 @@
-package ynov.java.bank;
+package ynov.java.bank.view;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -23,7 +23,7 @@ public class ViewInfos extends JPanel
 		
 		// COMPS
 		JLabel titreLabel = new JLabel("AppSuperBank");
-		JLabel devsLabel = new JLabel("Développé par : " +"3 gigolos");
+		JLabel devsLabel = new JLabel("Dï¿½veloppï¿½ par : " +"3 gigolos");
 		JLabel versionLabel = new JLabel("Version : " +this.appversion);
 		JLabel descriptionLabel = new JLabel("Application de gestion de BANK boy here we go");
 		JButton loginButton = new JButton("Login");

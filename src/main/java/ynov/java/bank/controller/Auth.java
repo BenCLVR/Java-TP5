@@ -1,6 +1,8 @@
-package ynov.java.bank;
+package ynov.java.bank.controller;
 
 import java.util.List;
+
+import ynov.java.bank.modele.User;
 
 public class Auth {
 	int toto;

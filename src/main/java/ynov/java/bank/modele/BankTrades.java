@@ -1,4 +1,4 @@
-package ynov.java.bank;
+package ynov.java.bank.modele;
 
 public class BankTrades {
 

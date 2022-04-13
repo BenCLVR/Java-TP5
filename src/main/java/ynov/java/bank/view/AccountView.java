@@ -1,4 +1,4 @@
-package ynov.java.bank;
+package ynov.java.bank.view;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;

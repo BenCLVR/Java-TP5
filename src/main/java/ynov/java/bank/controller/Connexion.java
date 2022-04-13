@@ -1,4 +1,4 @@
-package ynov.java.bank;
+package ynov.java.bank.controller;
 
 import java.io.EOFException;
 import java.sql.Connection;
@@ -11,7 +11,8 @@ public class Connexion {
 		
 		//REFAIRE UNE DB
 		String driver = "org.postgresql.Driver";
-		String url = "jdbc:postgresql://localhost:5432/ynov";
+		//String url = "jdbc:postgresql://localhost:5432/ynov";
+		String url = "postgresql-claverie_bank.alwaysdata.net";
 		String username = "ynovuser";
 		String password = "azerty123";
 		try {
@@ -20,7 +21,7 @@ public class Connexion {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Connection conn = DriverManager.getConnection(url, username, password);
+		Connection conn = DriverManager.getConnection("postgresql-claverie.alwaysdata.net:5432", "claverie_greg", "Azerty=12345");
 
 		return conn;
 	}

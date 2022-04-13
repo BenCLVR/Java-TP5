@@ -1,4 +1,4 @@
-package ynov.java.bank;
+package ynov.java.bank.view;
 
 import java.awt.Color;
 import java.awt.GridBagConstraints;
@@ -22,6 +22,9 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import ynov.java.bank.modele.BankAccount;
+import ynov.java.bank.modele.User;
 
 public class Bank {
 

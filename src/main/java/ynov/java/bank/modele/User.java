@@ -1,14 +1,14 @@
-package ynov.java.bank;
+package ynov.java.bank.modele;
 
 public class User {
 	int id;
 	BankAccount[] bankAccounts;
 	String nom;
-	String pseudo;
-	String password;
+	public String pseudo;
+	public String password;
 	
 	User() {}
-	User(int id, String nom, String pseudo, String password) {
+	public User(int id, String nom, String pseudo, String password) {
 		this.id = id;
 		this.nom = nom;
 		this.password = password;
