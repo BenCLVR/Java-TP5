@@ -32,14 +32,10 @@ public class Bank {
 	JPanel currentPanel;
 
 	// VARIABLES POOL
-	private ArrayList<BankAccount> bankAccountPool = new ArrayList<BankAccount>();
-	private ArrayList<User> userPool = new ArrayList<User>();
 
 	// JACKSON my boy
-	private ObjectMapper objectMapper = new ObjectMapper();
-	private String dir = System.getProperty("user.dir");
-	private String bankAccountsJsonFilePath = "\\ressources\\bankAccounts.json";
-	private String usersJsonFilePath = "\\ressources\\users.json";
+	
+
 
 	public Bank() {
 
@@ -154,78 +150,10 @@ public class Bank {
 		});
 	}
 
-	private ArrayList<BankAccount> loadBankAccounts() {
-		ArrayList<BankAccount> bankAccounts = null;
+	
 
-		try {
-			bankAccounts = objectMapper.readValue(new File(this.dir + this.bankAccountsJsonFilePath),
-					new TypeReference<ArrayList<BankAccount>>() {
-					});
-		} catch (JsonParseException e) {
-			e.printStackTrace();
-			bankAccounts = new ArrayList<BankAccount>();
-		} catch (JsonMappingException e) {
-			e.printStackTrace();
-			bankAccounts = new ArrayList<BankAccount>();
-		} catch (IOException e) {
-			e.printStackTrace();
-			bankAccounts = new ArrayList<BankAccount>();
-		}
+	
 
-		return (bankAccounts);
-	}
-
-	private int saveBankAccounts() {
-		try {
-			objectMapper.writeValue(new File(this.dir + this.bankAccountsJsonFilePath), this.bankAccountPool);
-		} catch (JsonGenerationException e) {
-			e.printStackTrace();
-			return (1);
-		} catch (JsonMappingException e) {
-			e.printStackTrace();
-			return (2);
-		} catch (IOException e) {
-			e.printStackTrace();
-			return (3);
-		}
-		return (0);
-	}
-
-	private ArrayList<User> loadUsers() {
-		ArrayList<User> users = null;
-
-		try {
-			users = objectMapper.readValue(new File(this.dir + this.usersJsonFilePath),
-					new TypeReference<ArrayList<User>>() {
-					});
-		} catch (JsonParseException e) {
-			e.printStackTrace();
-			users = new ArrayList<User>();
-		} catch (JsonMappingException e) {
-			e.printStackTrace();
-			users = new ArrayList<User>();
-		} catch (IOException e) {
-			e.printStackTrace();
-			users = new ArrayList<User>();
-		}
-
-		return (users);
-	}
-
-	private int saveUsers() {
-		try {
-			objectMapper.writeValue(new File(this.dir + usersJsonFilePath), this.userPool);
-		} catch (JsonGenerationException e) {
-			e.printStackTrace();
-			return (1);
-		} catch (JsonMappingException e) {
-			e.printStackTrace();
-			return (2);
-		} catch (IOException e) {
-			e.printStackTrace();
-			return (3);
-		}
-		return (0);
-	}
+	
 
 }
