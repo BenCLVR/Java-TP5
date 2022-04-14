@@ -12,19 +12,8 @@ public class Main {
 	public static void main(String[] args) {
 		System.out.println("toto");
 		Connexion conn = new Connexion();
-		try {
-			Connection sql = conn.getConnexion();
-			System.out.println("toto");
-			Statement state = sql.createStatement();
-			System.out.println("toto");
-			Bank h = new Bank();
-		} catch (EOFException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+
+		Bank h = new Bank();
+
 	}
 }

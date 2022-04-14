@@ -6,6 +6,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.EOFException;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
@@ -26,6 +27,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import ynov.java.bank.controller.BankController;
 import ynov.java.bank.controller.Connexion;
 import ynov.java.bank.modele.BankAccount;
 import ynov.java.bank.modele.User;
@@ -48,6 +50,7 @@ public class Bank {
 		final JTextField name = new JTextField(10);
 		final JButton button = new JButton("Sign Up");
 		JButton buttonok = new JButton("Validate");
+		final BankController cont = new BankController();
 
 
 
@@ -57,9 +60,9 @@ public class Bank {
 		JPanel panelFormAuth = new JPanel();
 		
 		JLabel labelpseudo = new JLabel("Pseudo");
-		JTextField pseudo = new JTextField(10);
+		final JTextField pseudo = new JTextField(10);
 		JLabel labelpw = new JLabel("Password");
-		JTextField password = new JTextField(10);
+		final JTextField password = new JTextField(10);
 		
 		panelFormAuth.setLayout(new GridBagLayout());
 		panelFormAuth.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -140,7 +143,15 @@ public class Bank {
 			public void actionPerformed(ActionEvent e) {
 
 				if (button.getText().equals("Login")) {
-
+					try {
+						cont.createUser(name.getText(), pseudo.getText(), password.getText());
+					} catch (EOFException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					BankView test = new BankView (frame);
 					frame.setContentPane(test);
 					frame.repaint();
