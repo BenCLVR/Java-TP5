@@ -41,7 +41,7 @@ public class Bank {
 	
 
 
-	public Bank(final Statement state) {
+	public Bank() {
 
 		
 		final JLabel labelname = new JLabel("Nom");
@@ -57,9 +57,9 @@ public class Bank {
 		JPanel panelFormAuth = new JPanel();
 		
 		JLabel labelpseudo = new JLabel("Pseudo");
-		final JTextField pseudo = new JTextField(10);
+		JTextField pseudo = new JTextField(10);
 		JLabel labelpw = new JLabel("Password");
-		final JTextField password = new JTextField(10);
+		JTextField password = new JTextField(10);
 		
 		panelFormAuth.setLayout(new GridBagLayout());
 		panelFormAuth.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -141,17 +141,10 @@ public class Bank {
 
 				if (button.getText().equals("Login")) {
 
-					 try {
-						state.executeQuery("INSERT INTO users ('"+pseudo.getText()+"', '"+name.getText()+"', '"+password.getText()+"'");
-						BankView test = new BankView (frame);
-						frame.setContentPane(test);
-						frame.repaint();
-						frame.revalidate();
-					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					
+					BankView test = new BankView (frame);
+					frame.setContentPane(test);
+					frame.repaint();
+					frame.revalidate();
 					
 				} else {
 

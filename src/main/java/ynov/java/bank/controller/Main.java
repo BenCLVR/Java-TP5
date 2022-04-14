@@ -17,7 +17,7 @@ public class Main {
 			System.out.println("toto");
 			Statement state = sql.createStatement();
 			System.out.println("toto");
-			Bank h = new Bank(state);
+			Bank h = new Bank();
 		} catch (EOFException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
