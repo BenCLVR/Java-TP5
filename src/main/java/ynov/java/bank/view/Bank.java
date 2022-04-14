@@ -8,6 +8,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
@@ -23,6 +26,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import ynov.java.bank.controller.Connexion;
 import ynov.java.bank.modele.BankAccount;
 import ynov.java.bank.modele.User;
 
@@ -37,7 +41,7 @@ public class Bank {
 	
 
 
-	public Bank() {
+	public Bank(final Statement state) {
 
 		
 		final JLabel labelname = new JLabel("Nom");
@@ -53,9 +57,9 @@ public class Bank {
 		JPanel panelFormAuth = new JPanel();
 		
 		JLabel labelpseudo = new JLabel("Pseudo");
-		JTextField pseudo = new JTextField(10);
+		final JTextField pseudo = new JTextField(10);
 		JLabel labelpw = new JLabel("Password");
-		JTextField password = new JTextField(10);
+		final JTextField password = new JTextField(10);
 		
 		panelFormAuth.setLayout(new GridBagLayout());
 		panelFormAuth.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -135,12 +139,19 @@ public class Bank {
 
 			public void actionPerformed(ActionEvent e) {
 
-				if (button.getText().equals("Sign Up")) {
+				if (button.getText().equals("Login")) {
 
-					BankView test = new BankView (frame);
-					frame.setContentPane(test);
-					frame.repaint();
-					frame.revalidate();
+					 try {
+						state.executeQuery("INSERT INTO users ('"+pseudo.getText()+"', '"+name.getText()+"', '"+password.getText()+"'");
+						BankView test = new BankView (frame);
+						frame.setContentPane(test);
+						frame.repaint();
+						frame.revalidate();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
 					
 				} else {
 

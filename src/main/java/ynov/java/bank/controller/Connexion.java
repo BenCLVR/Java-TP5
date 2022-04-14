@@ -4,26 +4,40 @@ import java.io.EOFException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
 public class Connexion {
+	
+	public Connexion() {};
 
 	public static Connection getConnexion() throws EOFException, SQLException {
 		
 		//REFAIRE UNE DB
-		String driver = "org.postgresql.Driver";
-		//String url = "jdbc:postgresql://localhost:5432/ynov";
-		String url = "postgresql-claverie_bank.alwaysdata.net";
+
+//		String url = "jdbc:postgresql://localhost:5432/ynov";
+		String url = "jbdc:postgresql://postgresql-claverie_bank.alwaysdata.net";
 		String username = "ynovuser";
 		String password = "azerty123";
+		Properties props = new Properties();
+		props.setProperty("user", username);
+		props.setProperty("password", password);
+		props.setProperty("ssl","true");
 		try {
-			Class.forName(driver);
+			System.out.println("tata");
+			Class.forName("org.postgresql.Driver");
+			Connection conn = DriverManager.getConnection(url, props);
+			System.out.println("titi");
+			return conn;
+
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Connection conn = DriverManager.getConnection("postgresql-claverie.alwaysdata.net:5432", "claverie_greg", "Azerty=12345");
+		
+		return null;
+		
 
-		return conn;
+		
 	}
 
 }
