@@ -143,9 +143,12 @@ public class Bank {
 		buttonok.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-
+				
+				
+				//CREATE USER
 				if (button.getText().equals("Login")) {
 					try {
+						System.out.println("sign");
 						cont.createUser(name.getText(), pseudo.getText(), password.getText());
 					} catch (EOFException e1) {
 						// TODO Auto-generated catch block
@@ -155,10 +158,13 @@ public class Bank {
 						e1.printStackTrace();
 					}
 					
+				
 					
+					//LOGIN
 				} if (button.getText().equals("Sign Up")){
 					try {
-						ResultSet result = cont.LogUser(pseudo.getText(), password.getText());
+						String result = cont.LogUser(pseudo.getText(), password.getText());
+						System.out.println("login");
 						if (pseudo.getText().equals("e")) {
 							BankView test = new BankView (frame);
 							frame.setContentPane(test);

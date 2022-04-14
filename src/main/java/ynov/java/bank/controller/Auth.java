@@ -34,16 +34,17 @@ public class Auth {
 		
 	}
 	
-	public  ResultSet LogUser(String name, String pwd ) throws EOFException, SQLException {
+	public  String LogUser(String name, String pwd ) throws EOFException, SQLException {
+		String Rname = new String();
 		Connection sql = conn.getConnexion();
 		Statement state = sql.createStatement();
-		ResultSet result = state.executeQuery("SELECT * FROM users WHERE nom = '"+name+"' AND mdp = '"+pwd+"'");
+		ResultSet result = state.executeQuery("SELECT nom, mdp FROM users WHERE nom = '"+name+"' AND mdp = '"+pwd+"'");
 		while (result.next()) {
-			String Rname = result.getString("nom");
-			System.out.println(Rname);
+			Rname = result.getString("nom");
+			String Rpwd = result.getString("mdp");
 			}
-		
-		return result;
+		System.out.println(Rname);
+		return Rname;
 	}
 	
 	public static List<User> register (int id, String nom, String pseudo, String password, List<User> users) {
