@@ -15,28 +15,33 @@ public class Connexion {
 		//REFAIRE UNE DB
 
 //		String url = "jdbc:postgresql://localhost:5432/ynov";
-		String url = "jbdc:postgresql://postgresql-claverie_bank.alwaysdata.net";
-		String username = "ynovuser";
-		String password = "azerty123";
-		Properties props = new Properties();
-		props.setProperty("user", username);
-		props.setProperty("password", password);
-		props.setProperty("ssl","true");
-		try {
-			System.out.println("tata");
-			Class.forName("org.postgresql.Driver");
-			Connection conn = DriverManager.getConnection(url, props);
-			System.out.println("titi");
-			return conn;
-
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		String url = "jbdc:postgresql://postgresql-claverie_bank.alwaysdata.net";
+//		String username = "ynovuser";
+//		String password = "azerty123";
+//		Properties props = new Properties();
+//		props.setProperty("user", username);
+//		props.setProperty("password", password);
+//		props.setProperty("ssl","true");
+//		try {
+//			System.out.println("tata");
+//			Class.forName("org.postgresql.Driver");
+//			Connection conn = DriverManager.getConnection(url, props);
+//			System.out.println("titi");
+//			return conn;
+//
+//		} catch (ClassNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//		return null;
 		
-		return null;
+//		postgresql-claverie.alwaysdata.net
+//		db_name: claverie_bank
+//		usr: claverie
+//		pwd: ynov_java
 		
-
+		return DriverManager.getConnection("jdbc:postgresql://postgresql-claverie.alwaysdata.net:5432/claverie_bank", "claverie", "ynov_java");
 		
 	}
 
