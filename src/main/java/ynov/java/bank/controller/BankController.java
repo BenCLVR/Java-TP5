@@ -109,12 +109,7 @@ public class BankController {
 		return (users);
 	}
 	
-	public  int createUser(String name, String surname, String pwd ) throws EOFException, SQLException {
-		Connection sql = conn.getConnexion();
-		Statement state = sql.createStatement();
-		int result = state.executeUpdate("INSERT INTO users (nom, prenom, mdp) VALUES ('"+name+"','"+surname+"','"+pwd+"')");
-		return result;
-	}
+
 	
 	
 	

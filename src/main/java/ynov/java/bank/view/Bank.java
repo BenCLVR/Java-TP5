@@ -10,6 +10,7 @@ import java.io.EOFException;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import ynov.java.bank.controller.Auth;
 import ynov.java.bank.controller.BankController;
 import ynov.java.bank.controller.Connexion;
 import ynov.java.bank.modele.BankAccount;
@@ -50,7 +52,7 @@ public class Bank {
 		final JTextField name = new JTextField(10);
 		final JButton button = new JButton("Sign Up");
 		JButton buttonok = new JButton("Validate");
-		final BankController cont = new BankController();
+		final Auth cont = new Auth();
 
 
 
@@ -152,13 +154,25 @@ public class Bank {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					BankView test = new BankView (frame);
-					frame.setContentPane(test);
-					frame.repaint();
-					frame.revalidate();
 					
-				} else {
-
+					
+				} if (button.getText().equals("Sign Up")){
+					try {
+						ResultSet result = cont.LogUser(pseudo.getText(), password.getText());
+						if (pseudo.getText().equals("e")) {
+							BankView test = new BankView (frame);
+							frame.setContentPane(test);
+							frame.repaint();
+							frame.revalidate();
+						}
+					} catch (EOFException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
 				}
 			}
 
