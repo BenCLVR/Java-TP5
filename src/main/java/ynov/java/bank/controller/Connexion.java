@@ -14,6 +14,8 @@ public class Connexion {
 
 		//REFAIRE UNE DB
 
+
+		
 		//		String url = "jdbc:postgresql://localhost:5432/ynov";
 		String url = "jbdc:postgresql://postgresql-claverie.alwaysdata.net:5432/claverie_bank";
 		String username = "claverie_greg";

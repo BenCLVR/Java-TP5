@@ -15,9 +15,15 @@ public class Main {
 		try {
 			Connection sql = conn.getConnexion();
 			System.out.println("toto");
+<<<<<<< HEAD
 			Statement state = sql.createStatement();
 			System.out.println("toto");
 			Bank h = new Bank();
+=======
+//			Statement state = sql.createStatement();
+//			System.out.println("toto");
+//			Bank h = new Bank(state);
+>>>>>>> 6f3422c989ec917634419c0ed35e78c08a157c1e
 		} catch (EOFException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
