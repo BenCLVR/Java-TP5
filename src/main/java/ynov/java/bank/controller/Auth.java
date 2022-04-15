@@ -13,11 +13,13 @@ public class Auth {
 	int toto;
 
 	Connexion conn = new Connexion();
+	User currentUser = null;
 	
-	public static User login (String pseudo, String password, User[] users) {
+	public User login (String pseudo, String password, User[] users) {
 		System.out.println(users.length);
 		for (User user : users) {
 			if(user.pseudo.equals(pseudo) && user.password.equals(password)) {
+				this.currentUser = user;
 				return user;
 			}
 		}
@@ -38,15 +40,28 @@ public class Auth {
 		String Rpwd = new String();
 		Connection sql = conn.getConnexion();
 		Statement state = sql.createStatement();
+		
+		int tempId = 0;
+		String tempNom = null;
+		String tempPrenom = null;
+		String tempMdp = null;
 
-		ResultSet result = state.executeQuery("SELECT nom, mdp FROM users WHERE nom = '"+name+"'");
+		ResultSet result = state.executeQuery("SELECT id, nom, prenom, mdp FROM users WHERE nom = '"+name+"'");
 
 		while (result.next()) {
-			Rpwd = result.getString("mdp");
+			tempId = result.getInt("id");
+			tempNom = result.getString("nom");
+			tempPrenom = result.getString("prenom");
+			tempMdp = result.getString("mdp");
+			System.out.println(tempNom +" " +tempPrenom +" " +tempMdp);
+			System.out.println("");
+			Rpwd = tempMdp;
 		}
 		// si on a un resultat de la db (un user trouvé) et que les mdp correspondent on valide
 		if(Rpwd != null && pwd.equals(Rpwd)){
 			System.out.println("loggin succeced");
+			this.currentUser = new User(tempId, tempNom, tempPrenom, tempMdp);
+			System.out.println(currentUser.pseudo +" " +currentUser.password);
 			return true;
 		}
 		System.out.println("loggin failed");

@@ -11,6 +11,7 @@ public class User {
 	public User(int id, String nom, String pseudo, String password) {
 		this.id = id;
 		this.nom = nom;
+		this.pseudo = pseudo;
 		this.password = password;
 	}
 
