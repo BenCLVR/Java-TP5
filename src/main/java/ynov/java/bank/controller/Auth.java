@@ -60,17 +60,22 @@ public class Auth {
 		// si on a un resultat de la db (un user trouvé) et que les mdp correspondent on valide
 		if(Rpwd != null && pwd.equals(Rpwd)){
 			System.out.println("loggin succeced");
-			this.currentUser = new User(tempId, tempNom, tempPrenom, tempMdp);
+			currentUser = new User(tempId, tempNom, tempPrenom, tempMdp);
 			System.out.println(currentUser.pseudo +" " +currentUser.password);
 			return true;
 		}
 		System.out.println("loggin failed");
 		return false;
 	}
-	
+
 	public static List<User> register (int id, String nom, String pseudo, String password, List<User> users) {
 		User toCreate = new User(id, nom, pseudo, password);
 		users.add(toCreate);
 		return users;
+	}
+	
+	public User getCurrentUser()
+	{
+		return (currentUser);
 	}
 }

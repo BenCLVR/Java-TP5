@@ -36,7 +36,7 @@ public class GestAccount extends JPanel {
         
         JLabel choiceOperationLabel = new JLabel("Sélectionner l'opération désirer");
         JComboBox choiceOperation = new JComboBox();
-		choiceOperation.addItem("Select");
+		//choiceOperation.addItem("Select");
 		choiceOperation.addItem("Ajouter");
 		choiceOperation.addItem("Retirer");
         
