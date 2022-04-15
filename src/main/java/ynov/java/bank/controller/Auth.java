@@ -5,6 +5,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import ynov.java.bank.modele.User;
 
@@ -44,6 +47,7 @@ public class Auth {
 			System.out.println("");
 			Rpwd = tempMdp;
 		}
+
 		// si on a un resultat de la db (un user trouvé) et que les mdp correspondent on valide
 		if(Rpwd != null && pwd.equals(Rpwd)){
 			System.out.println("loggin succeced");
@@ -51,6 +55,17 @@ public class Auth {
 			System.out.println(currentUser.pseudo +" " +currentUser.password);
 			return true;
 		}
+
+		result = state.executeQuery("SELECT id_account from linkaccount where id_user = '"+this.currentUser.getId()+"'");
+		List<Integer> accountIds = new ArrayList<Integer>();
+		while (result.next()) {
+			accountIds.add(result.getInt("id_account"));
+		}
+
+		String concatenedIds = accountIds.stream().map(String::valueOf).collect(Collectors.joining(","));
+
+
+
 		System.out.println("loggin failed");
 		return false;
 	}
