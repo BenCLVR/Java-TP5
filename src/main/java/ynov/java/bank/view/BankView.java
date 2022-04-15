@@ -19,7 +19,7 @@ import javax.swing.JTextField;
 public class BankView extends JPanel{
 
 	public BankView(final JFrame frame) {
-		
+
 		//MENU BAR SUR LA FRAME
 		JMenuBar menuBar = new JMenuBar();
 		JMenu options = new JMenu("Options");
@@ -31,7 +31,7 @@ public class BankView extends JPanel{
 		
 		JLabel labelApp = new JLabel("Application de gestion bancaire");
 		JLabel labelVersion = new JLabel("Version 1.0");
-		JLabel labelDev = new JLabel("Joffrey Jeunehomme, Benjamin Claverie, GrÃ©goire Bisso");
+		JLabel labelDev = new JLabel("Joffrey Jeunehomme, Benjamin Claverie, Grégoire Bisso");
 		
 		options.add(menuItemLeave);
 		options.add(menuItemHome);
