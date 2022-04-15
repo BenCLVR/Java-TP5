@@ -10,7 +10,7 @@ public class Connexion {
 
 	public Connexion() {};
 
-	public static Connection getConnexion() throws EOFException, SQLException {
+	public Connection getConnexion() throws EOFException, SQLException {
 
 		//REFAIRE UNE DB
 

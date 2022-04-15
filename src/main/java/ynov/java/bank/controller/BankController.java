@@ -1,7 +1,12 @@
 package ynov.java.bank.controller;
 
+import java.io.EOFException;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
@@ -21,6 +26,9 @@ public class BankController {
 	private ObjectMapper objectMapper = new ObjectMapper();
 	private ArrayList<BankAccount> bankAccountPool = new ArrayList<BankAccount>();
 	private ArrayList<User> userPool = new ArrayList<User>();
+	
+	Connexion conn = new Connexion();
+	
 
 	
 	public BankController() {
@@ -100,4 +108,9 @@ public class BankController {
 
 		return (users);
 	}
+	
+
+	
+	
+	
 }
