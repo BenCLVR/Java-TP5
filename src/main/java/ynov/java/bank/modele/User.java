@@ -1,8 +1,10 @@
 package ynov.java.bank.modele;
 
+import java.util.List;
+
 public class User {
 	public int id;
-	public BankAccount[] bankAccounts;
+	public List<BankAccount> bankAccounts;
 	public String nom;
 	public String pseudo;
 	public String password;
@@ -23,11 +25,11 @@ public class User {
 		this.id = id;
 	}
 
-	public BankAccount[] getBankAccounts() {
+	public List<BankAccount> getBankAccounts() {
 		return bankAccounts;
 	}
 
-	public void setBankAccounts(BankAccount[] bankAccounts) {
+	public void setBankAccounts(List<BankAccount> bankAccounts) {
 		this.bankAccounts = bankAccounts;
 	}
 
