@@ -13,6 +13,12 @@ public class BankAccount {
 		this.type = type;
 		this.amount = amount;
 	}
+	public BankAccount(int id, BankAccountType type, double amount) {
+		super();
+		this.id = id;
+		this.type = type;
+		this.amount = amount;
+	}
 
 	BankAccount() {
 		

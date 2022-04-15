@@ -149,11 +149,10 @@ public class Bank {
 				//LOGIN
 				if (button.getText().equals("Sign Up")){
 					try {
-
 						Boolean result = cont.LogUser(pseudo.getText(), password.getText());
 						
 						if (result) {
-							BankView test = new BankView (frame);
+							BankView test = new BankView(frame, cont);
 							frame.setContentPane(test);
 							frame.repaint();
 							frame.revalidate();

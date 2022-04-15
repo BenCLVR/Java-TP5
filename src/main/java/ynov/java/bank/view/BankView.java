@@ -16,9 +16,11 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import ynov.java.bank.controller.Auth;
+
 public class BankView extends JPanel{
 
-	public BankView(final JFrame frame) {
+	public BankView(final JFrame frame, final Auth cont) {
 
 		//MENU BAR SUR LA FRAME
 		JMenuBar menuBar = new JMenuBar();
@@ -31,7 +33,7 @@ public class BankView extends JPanel{
 		
 		JLabel labelApp = new JLabel("Application de gestion bancaire");
 		JLabel labelVersion = new JLabel("Version 1.0");
-		JLabel labelDev = new JLabel("Joffrey Jeunehomme, Benjamin Claverie, Grégoire Bisso");
+		JLabel labelDev = new JLabel("Joffrey Jeunehomme, Benjamin Claverie, Grï¿½goire Bisso");
 		
 		options.add(menuItemLeave);
 		options.add(menuItemHome);
@@ -66,7 +68,7 @@ public class BankView extends JPanel{
 		menuItemListComptes.addActionListener(new ActionListener () {
 
 			public void actionPerformed(ActionEvent e) {
-				AccountView test = new AccountView (frame);
+				AccountView test = new AccountView (frame, cont);
 				frame.setContentPane(test);
 				frame.repaint();
 				frame.revalidate();
@@ -85,7 +87,7 @@ public class BankView extends JPanel{
 		menuItemHome.addActionListener(new ActionListener () {
 
 			public void actionPerformed(ActionEvent e) {
-				BankView test = new BankView (frame);
+				BankView test = new BankView (frame, cont);
 				frame.setContentPane(test);
 				frame.repaint();
 				frame.revalidate();
