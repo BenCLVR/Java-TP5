@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
@@ -33,6 +32,15 @@ public class BankController {
 	
 	public BankController() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	public int createAccount(String name, String surname, String pwd ) throws EOFException, SQLException {
+		Connection sql = conn.getConnexion();
+		Statement state = sql.createStatement();
+		int result = state.executeUpdate("INSERT INTO users (nom, prenom, mdp) VALUES ('"+name+"','"+surname+"','"+pwd+"')");
+		sql.close();
+		System.out.println("User added");
+		return result;
 	}
 
 	private ArrayList<BankAccount> loadBankAccounts() {
