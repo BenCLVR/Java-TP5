@@ -4,6 +4,8 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.EOFException;
+import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -13,11 +15,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import ynov.java.bank.controller.BankController;
+
 public class AddAccount extends JPanel{
 
 	public AddAccount(final JFrame frame) {
 
-		
+		final BankController cont = new BankController();
 		GridBagConstraints gbcp = new GridBagConstraints();
 		gbcp.insets = new Insets(5, 5, 5, 5);
 
@@ -96,8 +100,8 @@ public class AddAccount extends JPanel{
 		gbcp.gridy = 0;
 		final JComboBox comboBox = new JComboBox();
 		comboBox.addItem("Select");
-		comboBox.addItem("Compte Perso");
-		comboBox.addItem("Compte Join");
+		comboBox.addItem("Courant");
+		comboBox.addItem("Joint");
 
 		
 
@@ -127,9 +131,18 @@ public class AddAccount extends JPanel{
 		
 		btnSubmit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-                if((textField_1.getText().isEmpty())||(textField_2.getText().isEmpty())||(textField_3.getText().isEmpty())|| (textField_4.getText().isEmpty()) ||(comboBox.getSelectedItem().equals("Select")))
+                if((textField_1.getText().isEmpty())||(textField_2.getText().isEmpty())||(textField_3.getText().isEmpty())||(comboBox.getSelectedItem().equals("Select")))
                     JOptionPane.showMessageDialog(null, "Data Missing");
-                else       
+				else
+					try {
+						cont.createAccount(textField_1.getText(), textField_2.getText(), comboBox.getSelectedItem());
+					} catch (EOFException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
                 JOptionPane.showMessageDialog(null, "Data Submitted");
             }
         });
