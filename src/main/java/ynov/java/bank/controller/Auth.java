@@ -5,7 +5,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.List;
 
 import ynov.java.bank.modele.User;
 
@@ -14,18 +13,6 @@ public class Auth {
 
 	Connexion conn = new Connexion();
 	User currentUser = null;
-	
-	public User login (String pseudo, String password, User[] users) {
-		System.out.println(users.length);
-		for (User user : users) {
-			if(user.pseudo.equals(pseudo) && user.password.equals(password)) {
-				this.currentUser = user;
-				return user;
-			}
-		}
-		return null;
-	}
-	
 	
 	public int createUser(String name, String surname, String pwd ) throws EOFException, SQLException {
 		Connection sql = conn.getConnexion();
@@ -67,10 +54,5 @@ public class Auth {
 		System.out.println("loggin failed");
 		return false;
 	}
-	
-	public static List<User> register (int id, String nom, String pseudo, String password, List<User> users) {
-		User toCreate = new User(id, nom, pseudo, password);
-		users.add(toCreate);
-		return users;
-	}
+
 }
