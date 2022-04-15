@@ -56,14 +56,14 @@ public class Auth {
 			return true;
 		}
 
-		result = state.executeQuery("SELECT id_account from linkaccount where id_user = '"+this.currentUser.getId()+"'");
+		result = state.executeQuery("SELECT id_account from linkaccount where id_user = '"+this.currentUser.id+"'");
 		List<Integer> accountIds = new ArrayList<Integer>();
 		while (result.next()) {
 			accountIds.add(result.getInt("id_account"));
 		}
 
 		// String concatenedIds = accountIds.stream().map(String::valueOf).collect(Collectors.joining(","));
-		System.out.println(accountIds.toString());;
+		System.out.println(accountIds.toString());
 
 
 		System.out.println("loggin failed");

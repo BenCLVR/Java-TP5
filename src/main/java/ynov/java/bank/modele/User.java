@@ -1,9 +1,9 @@
 package ynov.java.bank.modele;
 
 public class User {
-	int id;
-	BankAccount[] bankAccounts;
-	String nom;
+	public int id;
+	public BankAccount[] bankAccounts;
+	public String nom;
 	public String pseudo;
 	public String password;
 	
