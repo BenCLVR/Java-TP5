@@ -4,7 +4,7 @@ import java.io.EOFException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Properties;
+//import java.util.Properties;
 
 public class Connexion {
 
@@ -14,14 +14,14 @@ public class Connexion {
 
 		//REFAIRE UNE DB
 
-		//		String url = "jdbc:postgresql://localhost:5432/ynov";
-		String url = "jbdc:postgresql://postgresql-claverie.alwaysdata.net:5432/claverie_bank";
-		String username = "claverie_greg";
-		String password = "Azerty=12345";
-		Properties props = new Properties();
-		props.setProperty("user", username);
-		props.setProperty("password", password);
-		props.setProperty("ssl","true");
+//		String url = "jdbc:postgresql://localhost:5432/ynov";
+//		String url = "jbdc:postgresql://postgresql-claverie.alwaysdata.net:5432/claverie_bank";
+//		String username = "claverie_greg";
+//		String password = "Azerty=12345";
+//		Properties props = new Properties();
+//		props.setProperty("user", username);
+//		props.setProperty("password", password);
+//		props.setProperty("ssl","true");
 
 		System.out.println("titi");
 

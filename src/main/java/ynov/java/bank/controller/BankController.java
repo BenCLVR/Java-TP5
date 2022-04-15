@@ -1,12 +1,7 @@
 package ynov.java.bank.controller;
 
-import java.io.EOFException;
 import java.io.File;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
