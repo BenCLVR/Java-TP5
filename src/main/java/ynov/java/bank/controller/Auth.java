@@ -17,7 +17,7 @@ public class Auth {
 	int toto;
 
 	Connexion conn = new Connexion();
-	User currentUser = null;
+	public User currentUser = null;
 
 	public int createUser(String name, String surname, String pwd) throws EOFException, SQLException {
 		Connection sql = conn.getConnexion();

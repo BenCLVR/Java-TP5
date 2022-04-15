@@ -14,9 +14,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import ynov.java.bank.controller.Auth;
+
 public class AccountView extends JPanel{
 
-	public AccountView(final JFrame frame) {
+	public AccountView(final JFrame frame, Auth cont) {
 		 
         JPanel panelLastTransaction = new JPanel();
  
@@ -29,7 +31,7 @@ public class AccountView extends JPanel{
         JPanel panelGridAccountBalance = new JPanel();
         panelGridAccountBalance.setLayout(new GridLayout(2,1));
         
-        JLabel labelUserBalance = new JLabel("User : ");
+        JLabel labelUserBalance = new JLabel("User : " + cont.currentUser.nom);
         JComboBox comboAccountBalance = new JComboBox();
         JButton btnValidateBalance = new JButton("Validate");
         JLabel labelAmountBalance = new JLabel("Your balance :");
