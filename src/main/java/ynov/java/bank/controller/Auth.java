@@ -63,7 +63,7 @@ public class Auth {
 		}
 
 		// String concatenedIds = accountIds.stream().map(String::valueOf).collect(Collectors.joining(","));
-
+		System.out.println(accountIds.toString());;
 
 
 		System.out.println("loggin failed");
