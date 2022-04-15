@@ -15,6 +15,7 @@ public class Auth {
 	Connexion conn = new Connexion();
 	
 	public static User login (String pseudo, String password, User[] users) {
+		System.out.println(users.length);
 		for (User user : users) {
 			if(user.pseudo.equals(pseudo) && user.password.equals(password)) {
 				return user;
@@ -24,27 +25,32 @@ public class Auth {
 	}
 	
 	
-	public  int createUser(String name, String surname, String pwd ) throws EOFException, SQLException {
+	public int createUser(String name, String surname, String pwd ) throws EOFException, SQLException {
 		Connection sql = conn.getConnexion();
 		Statement state = sql.createStatement();
 		int result = state.executeUpdate("INSERT INTO users (nom, prenom, mdp) VALUES ('"+name+"','"+surname+"','"+pwd+"')");
 		sql.close();
-		System.out.println(result);
+		System.out.println("User added");
 		return result;
-		
 	}
 	
-	public  String LogUser(String name, String pwd ) throws EOFException, SQLException {
-		String Rname = new String();
+	public boolean LogUser(String name, String pwd ) throws EOFException, SQLException {
+		String Rpwd = new String();
 		Connection sql = conn.getConnexion();
 		Statement state = sql.createStatement();
-		ResultSet result = state.executeQuery("SELECT * FROM public.users WHERE nom = '"+name+"' AND mdp = '"+pwd+"'");
+
+		ResultSet result = state.executeQuery("SELECT nom, mdp FROM users WHERE nom = '"+name+"'");
+
 		while (result.next()) {
-			Rname = result.getString("nom");
-			String Rpwd = result.getString("mdp");
-			}
-		System.out.println(Rname);
-		return Rname;
+			Rpwd = result.getString("mdp");
+		}
+		// si on a un resultat de la db (un user trouvé) et que les mdp correspondent on valide
+		if(Rpwd != null && pwd.equals(Rpwd)){
+			System.out.println("loggin succeced");
+			return true;
+		}
+		System.out.println("loggin failed");
+		return false;
 	}
 	
 	public static List<User> register (int id, String nom, String pseudo, String password, List<User> users) {

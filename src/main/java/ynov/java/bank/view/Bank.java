@@ -160,13 +160,15 @@ public class Bank {
 					
 				
 					
-					//LOGIN
-				} if (button.getText().equals("Sign Up")){
+					
+				}
+				//LOGIN
+				if (button.getText().equals("Sign Up")){
 					try {
-						String result = cont.LogUser(pseudo.getText(), password.getText());
-						System.out.println(result);
-						System.out.println("login");
-						if (pseudo.getText().equals(result)) {
+
+						Boolean result = cont.LogUser(pseudo.getText(), password.getText());
+						
+						if (result) {
 							BankView test = new BankView (frame);
 							frame.setContentPane(test);
 							frame.repaint();
@@ -185,11 +187,5 @@ public class Bank {
 
 		});
 	}
-
-	
-
-	
-
-	
 
 }
