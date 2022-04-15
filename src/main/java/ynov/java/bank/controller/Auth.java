@@ -62,7 +62,7 @@ public class Auth {
 			accountIds.add(result.getInt("id_account"));
 		}
 
-		String concatenedIds = accountIds.stream().map(String::valueOf).collect(Collectors.joining(","));
+		// String concatenedIds = accountIds.stream().map(String::valueOf).collect(Collectors.joining(","));
 
 
 
