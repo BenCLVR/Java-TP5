@@ -164,8 +164,9 @@ public class Bank {
 				} if (button.getText().equals("Sign Up")){
 					try {
 						String result = cont.LogUser(pseudo.getText(), password.getText());
+						System.out.println(result);
 						System.out.println("login");
-						if (pseudo.getText().equals("e")) {
+						if (pseudo.getText().equals(result)) {
 							BankView test = new BankView (frame);
 							frame.setContentPane(test);
 							frame.repaint();

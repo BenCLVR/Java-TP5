@@ -38,7 +38,7 @@ public class Auth {
 		String Rname = new String();
 		Connection sql = conn.getConnexion();
 		Statement state = sql.createStatement();
-		ResultSet result = state.executeQuery("SELECT nom, mdp FROM users WHERE nom = '"+name+"' AND mdp = '"+pwd+"'");
+		ResultSet result = state.executeQuery("SELECT * FROM public.users WHERE nom = '"+name+"' AND mdp = '"+pwd+"'");
 		while (result.next()) {
 			Rname = result.getString("nom");
 			String Rpwd = result.getString("mdp");
