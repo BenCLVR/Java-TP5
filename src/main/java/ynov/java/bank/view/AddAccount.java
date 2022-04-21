@@ -97,16 +97,24 @@ public class AddAccount extends JPanel {
 					JOptionPane.showMessageDialog(null, "Data Missing");
 				else
 					try {
-						contAcc.createAccount(textField_1.getText(), (BankAccountType) comboBox.getSelectedItem(),
+						BankAccountType BAType = (BankAccountType) comboBox.getSelectedItem();
+						boolean success = contAcc.createAccount(textField_1.getText(),
+								BAType,
 								cont.currentUser.getId());
 
-						List<Integer> BAIds = BankAccountController.getBankAccountIdsByUser(cont.currentUser.getId());
-						if (cont.currentUser.bankAccounts == null) {
-							cont.currentUser.setBankAccounts(new ArrayList<BankAccount>());
-						}
+						if (success) {
+							List<Integer> BAIds = BankAccountController
+									.getBankAccountIdsByUser(cont.currentUser.getId());
+							if (cont.currentUser.bankAccounts == null) {
+								cont.currentUser.setBankAccounts(new ArrayList<BankAccount>());
+							}
 
-						for (Integer id : BAIds) {
-							cont.currentUser.bankAccounts.add(BankAccountController.getBankAccountById(id));
+							for (Integer id : BAIds) {
+								cont.currentUser.bankAccounts.add(BankAccountController.getBankAccountById(id));
+							}
+						} else {
+							JOptionPane.showMessageDialog(null,
+									"You can not create another account with type " + BAType.toString());
 						}
 
 					} catch (EOFException e) {
