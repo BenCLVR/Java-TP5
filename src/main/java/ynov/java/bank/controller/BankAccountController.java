@@ -50,4 +50,55 @@ public class BankAccountController {
 		return new BankAccount(id, name,BankAccountType.CURRENT, amount);
 
 	}
+	
+	public int createAccount(String name, String amount, Object object ) throws EOFException, SQLException {
+		Connexion conn = new Connexion();
+		Connection sql = conn.getConnexion();
+		Statement state = sql.createStatement();
+		String id_account = new String();
+		int result = state.executeUpdate("INSERT INTO accounts (name, amount, types) VALUES ('"+name+"','"+amount+"','"+object+"')");
+		ResultSet resultid = state.executeQuery("SELECT id FROM accounts WHERE name = '"+name+"'");
+
+		
+		
+		while (resultid.next()) {
+			id_account = resultid.getString("id");
+		}
+		
+		//int result1 = state.executeUpdate("INSERT INTO linkaccount (id_user, id_account) VALUES ('"+id_user+"','"+id_account+ "')");
+		sql.close();
+		System.out.println("Account added");
+		return result;
+	}
+	
+
+	
+	
+	// A REVOIR 
+	public boolean GetAccount(String name) throws EOFException, SQLException {
+		Connexion conn = new Connexion();
+		String Rname = new String();
+		String Ramount = new String();
+		String Rtype = new String();
+		Connection sql = conn.getConnexion();
+		Statement state = sql.createStatement();
+
+		
+		// COMMENT GET ACCOUNT
+		//Passer par l'id user sur la table de jointure et récup tout les id accounts de cette table qui on l'user log et les retourner
+		ResultSet result = state.executeQuery("SELECT * FROM accounts WHERE nom = '"+name+"'");
+
+		while (result.next()) {
+			Rname = result.getString("name");
+			Ramount = result.getString("amount");
+			Rtype= result.getString("accounttype");
+		}
+		// 
+		if(Rname != null && name.equals(Rname)){
+			System.out.println("Account retriev");
+			return true;
+		}
+		System.out.println("Account not found");
+		return false;
+	}
 }
