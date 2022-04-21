@@ -3,6 +3,8 @@ package ynov.java.bank.modele;
 public class BankTrades {
 
 	int id;
+	int user_id;
+	int account_id;
 	User[] users;
 	BankAccount[] account;
 	
@@ -11,6 +13,15 @@ public class BankTrades {
 		this.id = id;
 		this.users = users;
 		this.account = account;
+		this.type = type;
+		this.amount = amount;
+	}
+	
+	public BankTrades(int id, int user_id, int account_id, BankTradesType type, double amount) {
+		super();
+		this.id = id;
+		this.user_id = user_id;
+		this.account_id = account_id;
 		this.type = type;
 		this.amount = amount;
 	}
