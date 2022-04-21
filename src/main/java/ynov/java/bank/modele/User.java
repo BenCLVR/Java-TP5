@@ -5,20 +5,20 @@ import java.util.List;
 public class User {
 	public int id;
 	public List<BankAccount> bankAccounts;
-	public String nom;
-	public String pseudo;
+	public String lastname;
+	public String firstname;
 	public String password;
 	
-	public User(int id, String nom, String pseudo, String password) {
+	public User(int id, String lastname, String firstname, String password) {
 		this.id = id;
-		this.nom = nom;
-		this.pseudo = pseudo;
+		this.lastname = lastname;
+		this.firstname = firstname;
 		this.password = password;
 	}
 
-	public User(int id, String nom, String pseudo) {
-		this.nom = nom;
-		this.pseudo = pseudo;
+	public User(int id, String lastname, String firstname) {
+		this.lastname = lastname;
+		this.firstname = firstname;
 	}
 
 	public int getId() {
@@ -38,19 +38,19 @@ public class User {
 	}
 
 	public String getNom() {
-		return nom;
+		return lastname;
 	}
 
 	public void setNom(String nom) {
-		this.nom = nom;
+		this.lastname = nom;
 	}
 
 	public String getPseudo() {
-		return pseudo;
+		return firstname;
 	}
 
 	public void setPseudo(String pseudo) {
-		this.pseudo = pseudo;
+		this.firstname = pseudo;
 	}
 
 	public String getPassword() {
