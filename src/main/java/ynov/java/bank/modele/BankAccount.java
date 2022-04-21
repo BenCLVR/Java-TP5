@@ -2,18 +2,10 @@ package ynov.java.bank.modele;
 
 public class BankAccount {	
 	int id;
-	User[] users;
 	BankAccountType type;
 	double amount;
 	String name;
 	
-	public BankAccount(int id, User[] users, BankAccountType type, double amount) {
-		super();
-		this.id = id;
-		this.users = users;
-		this.type = type;
-		this.amount = amount;
-	}
 	public BankAccount(int id, String name, BankAccountType type, double amount) {
 		super();
 		this.id = id;
@@ -35,13 +27,6 @@ public class BankAccount {
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
-	public User[] getUsers() {
-		return users;
-	}
-
-	public void setUsers(User[] users) {
-		this.users = users;
 	}
 
 	public BankAccountType getType() {

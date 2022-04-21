@@ -22,17 +22,11 @@ public class Bank extends JFrame{
 
 	
 	JPanel currentPanel;
-
-	// VARIABLES POOL
-
-	// JACKSON my boy
 	
-
-
 	public Bank() {
 
-		
-		final JLabel labelname = new JLabel("Nom");
+		//PANEL ELEMENTS
+		final JLabel labelname = new JLabel("Name");
 		final JTextField name = new JTextField(10);
 		final JButton button = new JButton("Sign Up");
 		JButton buttonok = new JButton("Validate");
