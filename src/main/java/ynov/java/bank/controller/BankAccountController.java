@@ -54,7 +54,7 @@ public class BankAccountController {
 
 	public boolean createAccount(String BAName, BankAccountType BAType, int userId)
 			throws EOFException, SQLException {
-		
+
 		boolean canCreateAccount = this.canCreateAccountByUserId(userId, BAType);
 		if (!canCreateAccount) {
 			return false;
@@ -67,7 +67,25 @@ public class BankAccountController {
 		Connection sql = conn.getConnexion();
 		Statement state = sql.createStatement();
 
-		state.executeUpdate("INSERT INTO linkaccount (id_user, id_account) VALUES ('"+userId+"', '"+BAId+"')");
+		state.executeUpdate("INSERT INTO linkaccount (id_user, id_account) VALUES ('" + userId + "', '" + BAId + "')");
+		sql.close();
+		return true;
+
+	}
+
+	public boolean linkAccountWithUserId(String BAName, int userId) throws EOFException, SQLException {
+		boolean canCreateAccount = this.canCreateAccountByUserId(userId, BankAccountType.JOINT);
+		if (!canCreateAccount) {
+			return false;
+		}
+
+		int BAId = this.getBankAccountIdByName(BAName);
+
+		Connexion conn = new Connexion();
+		Connection sql = conn.getConnexion();
+		Statement state = sql.createStatement();
+
+		state.executeUpdate("INSERT INTO linkaccount (id_user, id_account) VALUES ('" + userId + "', '" + BAId + "')");
 		sql.close();
 		return true;
 
