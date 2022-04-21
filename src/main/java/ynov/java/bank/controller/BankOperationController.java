@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import ynov.java.bank.modele.BankTradesType;
+
 public class BankOperationController {
 
 	
@@ -13,13 +15,13 @@ public class BankOperationController {
 		// TODO Auto-generated constructor stub
 	}
 
-	public int createOperation(int id_user,int id_account , String name, String amount, Object object ) throws EOFException, SQLException {
+	public int createOperation(int id_user,int id_account , double amount, BankTradesType object ) throws EOFException, SQLException {
 		Connexion conn = new Connexion();
 		Connection sql = conn.getConnexion();
 		Statement state = sql.createStatement();
 		String id_op = new String();
-		int result = state.executeUpdate("INSERT INTO operation (name, amount, types) VALUES ('"+name+"','"+amount+"','"+object+"')");
-		ResultSet resultid = state.executeQuery("SELECT id FROM accounts WHERE name = '"+name+"'");
+		int result = state.executeUpdate("INSERT INTO operation (id_user, amount, types, id_account) VALUES ('"+id_user+"','"+amount+"','"+object+"','"+id_account+"')");
+		ResultSet resultid = state.executeQuery("SELECT id FROM operation WHERE id_user = '"+id_user+"' AND id_account = '"+id_account+"'");
 
 		
 		
@@ -27,9 +29,8 @@ public class BankOperationController {
 			id_op = resultid.getString("id");
 		}
 		
-		//int result1 = state.executeUpdate("INSERT INTO linkaccount (id_user, id_account) VALUES ('"+id_user+"','"+id_account+ "')");
 		sql.close();
-		System.out.println("Account added");
+		System.out.println("Operation Submitted");
 		return result;
 	}
 }

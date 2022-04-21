@@ -57,13 +57,13 @@ public class AccountView extends JPanel{
         panelGridRight.add(btnGestAccount);
  
         this.add(panelLastTransaction);
-        this.add(panelGridRight, BorderLayout.EAST);
+        this.add(panelGridRight, BorderLayout.EAST); 
 		
 		
 		
 		btnGestAccount.addActionListener(new ActionListener () {
 			public void actionPerformed(ActionEvent e) {
-				GestAccount test = new GestAccount (frame);
+				GestAccount test = new GestAccount (frame, cont);
 				frame.setContentPane(test);
 				frame.repaint();
 				frame.revalidate();

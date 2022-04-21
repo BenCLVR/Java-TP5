@@ -2,6 +2,10 @@ package ynov.java.bank.view;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.EOFException;
+import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -11,10 +15,18 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import ynov.java.bank.controller.Auth;
+import ynov.java.bank.controller.BankOperationController;
+import ynov.java.bank.modele.BankAccountType;
+import ynov.java.bank.modele.BankTradesType;
+
+
+
 public class GestAccount extends JPanel {
 
-	public GestAccount(JFrame frame) {
+	public GestAccount(JFrame frame ,final Auth cont) {
 		
+		final BankOperationController contOp = new BankOperationController();
 		this.setLayout(new BorderLayout());
 		 
         JPanel ColumnPanel  = new JPanel();
@@ -33,18 +45,27 @@ public class GestAccount extends JPanel {
         
         JComboBox choiceAccountCombo = new JComboBox();
         
+        if(cont.currentUser.bankAccounts.get(0) != null) {
+        	choiceAccountCombo.addItem(cont.currentUser.bankAccounts.get(0).getName());
+        }
+        if(cont.currentUser.bankAccounts.get(1) != null){
+        	choiceAccountCombo.addItem(cont.currentUser.bankAccounts.get(1).getName());
+		}
+        
+        
         
         JLabel choiceOperationLabel = new JLabel("Sélectionner l'opération désirer");
-        JComboBox choiceOperation = new JComboBox();
-		choiceOperation.addItem("Select");
-		choiceOperation.addItem("Ajouter");
-		choiceOperation.addItem("Retirer");
+        final JComboBox choiceOperation = new JComboBox();
+        choiceOperation.addItem("Select");
+		choiceOperation.addItem(BankTradesType.ADD);
+		choiceOperation.addItem(BankTradesType.REMOVE);
+		
         
         JPanel amountTransactionPanel = new JPanel();
         
         JLabel amountTransactionLabel = new JLabel("Montant");
         
-        JTextField amountTransactionTextField = new JTextField();
+        final JTextField amountTransactionTextField = new JTextField();
         amountTransactionTextField.setColumns(12);
         
         
@@ -72,6 +93,24 @@ public class GestAccount extends JPanel {
         ColumnPanel.add(validationPanel);
     
         this.add(ColumnPanel);
+        
+        validationButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) { 
+                 try {
+					contOp.createOperation(cont.currentUser.id, cont.currentUser.getBankAccounts().get(0).getId(), Double.parseDouble(amountTransactionTextField.getText()), (BankTradesType) choiceOperation.getSelectedItem());
+				} catch (NumberFormatException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (EOFException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+                 
+            }
+        });
 	}
 
 }
