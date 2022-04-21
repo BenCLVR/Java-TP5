@@ -103,15 +103,7 @@ public class AddAccount extends JPanel {
 								cont.currentUser.getId());
 
 						if (success) {
-							List<Integer> BAIds = BankAccountController
-									.getBankAccountIdsByUser(cont.currentUser.getId());
-							if (cont.currentUser.bankAccounts == null) {
-								cont.currentUser.setBankAccounts(new ArrayList<BankAccount>());
-							}
-
-							for (Integer id : BAIds) {
-								cont.currentUser.bankAccounts.add(BankAccountController.getBankAccountById(id));
-							}
+							cont.refreshBankAccount();
 						} else {
 							JOptionPane.showMessageDialog(null,
 									"You can not create another account with type " + BAType.toString());
