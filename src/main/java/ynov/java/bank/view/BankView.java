@@ -79,7 +79,10 @@ public class BankView extends JPanel{
 		menuItemLeave.addActionListener(new ActionListener () {
 
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
+				Bank test = new Bank();
+				frame.setContentPane(test);
+				frame.repaint();
+				frame.revalidate();
 			};
 		});
 		
@@ -105,8 +108,7 @@ public class BankView extends JPanel{
 				frame.revalidate();
 			};
 		});
-		
-		
+				
 	}
 
 }
