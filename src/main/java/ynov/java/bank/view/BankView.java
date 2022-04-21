@@ -99,7 +99,7 @@ public class BankView extends JPanel{
 		menuItemAddComptes.addActionListener(new ActionListener () {
 
 			public void actionPerformed(ActionEvent e) {
-				AddAccount test = new AddAccount (frame);
+				AddAccount test = new AddAccount (frame, cont);
 				frame.setContentPane(test);
 				frame.repaint();
 				frame.revalidate();
