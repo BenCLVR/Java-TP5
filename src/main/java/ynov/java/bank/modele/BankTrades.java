@@ -28,8 +28,9 @@ public class BankTrades {
 		this.amount = amount;
 	}
 
-	public BankTrades(int userId, BankTradesType type, double amount) {
-		this.user_id = userId;
+	public BankTrades(User user, BankTradesType type, double amount) {
+		// this.user_id = userId;
+		this.user = user;
 		this.type = type;
 		this.amount = amount;
 	}
