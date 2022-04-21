@@ -70,6 +70,26 @@ public class BankAccountController {
 		System.out.println("Account added");
 		return result;
 	}
+
+	private boolean canCreateAccountByUserId(int userId, BankAccountType type) throws EOFException, SQLException {
+		Connexion conn = new Connexion();
+		Connection sql = conn.getConnexion();
+		Statement state = sql.createStatement();
+
+		ResultSet result = state.executeQuery("SELECT count(a.id) AS count FROM accounts a JOIN linkaccount la ON a.id = la.id_account JOIN users u ON u.id = la.id_user WHERE u.id = '"+ userId +"' AND a.types = '"+ type.toString() +"'");
+		System.out.println(result);
+
+		int count = 0;
+		while(result.next()) {
+			count = result.getInt("count");
+		}
+
+		if(count > 0) {
+			return false;
+		}
+
+		return true;
+	}
 	
 
 	
