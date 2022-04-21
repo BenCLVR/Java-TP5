@@ -47,7 +47,7 @@ public class BankAccountController {
 		}
 		bankAccountRequest.close();
 
-		return new BankAccount(id, BankAccountType.CURRENT, amount);
+		return new BankAccount(id, name,BankAccountType.CURRENT, amount);
 
 	}
 }

@@ -105,6 +105,8 @@ public class BankView extends JPanel{
 				frame.revalidate();
 			};
 		});
+		
+		
 	}
 
 }

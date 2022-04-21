@@ -5,6 +5,7 @@ public class BankAccount {
 	User[] users;
 	BankAccountType type;
 	double amount;
+	String name;
 	
 	public BankAccount(int id, User[] users, BankAccountType type, double amount) {
 		super();
@@ -13,9 +14,10 @@ public class BankAccount {
 		this.type = type;
 		this.amount = amount;
 	}
-	public BankAccount(int id, BankAccountType type, double amount) {
+	public BankAccount(int id, String name, BankAccountType type, double amount) {
 		super();
 		this.id = id;
+		this.name = name;
 		this.type = type;
 		this.amount = amount;
 	}
@@ -32,6 +34,12 @@ public class BankAccount {
 		this.id = id;
 	}
 
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public User[] getUsers() {
 		return users;
 	}

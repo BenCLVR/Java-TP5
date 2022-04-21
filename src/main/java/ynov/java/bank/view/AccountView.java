@@ -18,7 +18,7 @@ import ynov.java.bank.controller.Auth;
 
 public class AccountView extends JPanel{
 
-	public AccountView(final JFrame frame, Auth cont) {
+	public AccountView(final JFrame frame, final Auth cont) {
 		 
         JPanel panelLastTransaction = new JPanel();
  
@@ -32,13 +32,16 @@ public class AccountView extends JPanel{
         panelGridAccountBalance.setLayout(new GridLayout(2,1));
         
         JLabel labelUserBalance = new JLabel("User : " + cont.currentUser.nom);
-        JComboBox comboAccountBalance = new JComboBox();
-        JButton btnValidateBalance = new JButton("Validate");
-        JLabel labelAmountBalance = new JLabel("Your balance :");
+        final JComboBox comboAccountBalance = new JComboBox();
+        comboAccountBalance.addItem(cont.currentUser.bankAccounts.get(0).getName());
+        if(cont.currentUser.bankAccounts.get(1) != null){
+        	comboAccountBalance.addItem(cont.currentUser.bankAccounts.get(1).getName());
+		}
+        //JButton btnValidateBalance = new JButton("Validate");
+        final JLabel labelAmountBalance = new JLabel("Your balance :" + cont.currentUser.bankAccounts.get(0).getAmount());
  
         DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("From");
-        model.addColumn("To");
+        model.addColumn("Type");
         model.addColumn("Amount");
         model.addColumn("User.s");
         JTable table = new JTable(model);
@@ -47,7 +50,7 @@ public class AccountView extends JPanel{
         panelLastTransaction.add(scroll, BorderLayout.CENTER);
         
         panelGridAccountBalance.add(comboAccountBalance);
-        panelGridAccountBalance.add(btnValidateBalance);
+        //panelGridAccountBalance.add(btnValidateBalance);
         panelGridRight.add(labelUserBalance);
         panelGridRight.add(panelGridAccountBalance);
         panelGridRight.add(labelAmountBalance);
@@ -65,6 +68,17 @@ public class AccountView extends JPanel{
 				frame.repaint();
 				frame.revalidate();
 			};
+		});
+		
+		comboAccountBalance.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					if(comboAccountBalance.getSelectedItem().equals(cont.currentUser.bankAccounts.get(1).getName())){
+						labelAmountBalance.setText("Your balance :" + cont.currentUser.bankAccounts.get(1).getAmount());
+					}
+					else{
+						labelAmountBalance.setText("Your balance :" + cont.currentUser.bankAccounts.get(0).getAmount());
+					};
+			}
 		});
 	}
 

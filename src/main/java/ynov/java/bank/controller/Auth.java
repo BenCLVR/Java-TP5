@@ -74,6 +74,7 @@ public class Auth {
 		}
 
 		System.out.println(this.currentUser.bankAccounts.size());
+		 
 
 		return true;
 	}
