@@ -5,18 +5,20 @@ public class BankTrades {
 	int id;
 	int user_id;
 	int account_id;
-	User[] users;
-	BankAccount[] account;
-	
-	public BankTrades(int id, User[] users, BankAccount[] account, BankTradesType type, double amount) {
+	User user;
+	BankAccount bankAccount;
+	BankTradesType type;
+	double amount;
+
+	public BankTrades(int id, User user, BankAccount bankAccount, BankTradesType type, double amount) {
 		super();
 		this.id = id;
-		this.users = users;
-		this.account = account;
+		this.user = user;
+		this.bankAccount = bankAccount;
 		this.type = type;
 		this.amount = amount;
 	}
-	
+
 	public BankTrades(int id, int user_id, int account_id, BankTradesType type, double amount) {
 		super();
 		this.id = id;
@@ -26,51 +28,18 @@ public class BankTrades {
 		this.amount = amount;
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public User[] getUsers() {
-		return users;
-	}
-
-	public void setUsers(User[] users) {
-		this.users = users;
-	}
-
-	public BankAccount[] getAccount() {
-		return account;
-	}
-
-	public void setAccount(BankAccount[] account) {
-		this.account = account;
-	}
-
-	public BankTradesType getType() {
-		return type;
-	}
-
-	public void setType(BankTradesType type) {
+	public BankTrades(int userId, BankTradesType type, double amount) {
+		this.user_id = userId;
 		this.type = type;
-	}
-
-	public double getAmount() {
-		return amount;
-	}
-
-	public void setAmount(double amount) {
 		this.amount = amount;
 	}
 
-	BankTradesType type;
-	double amount;
-	
-	public BankTrades() {
-		// TODO Auto-generated constructor stub
+	public static BankTradesType getBankTradesTypeFromString(String str) {
+		if (str.equals("ADD")) {
+			return BankTradesType.ADD;
+		} else {
+			return BankTradesType.REMOVE;
+		}
 	}
 
 }

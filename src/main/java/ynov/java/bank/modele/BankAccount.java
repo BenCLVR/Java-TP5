@@ -21,11 +21,7 @@ public class BankAccount {
 		this.type = type;
 		this.amount = amount;
 	}
-
-	BankAccount() {
-		
-	}
-
+	
 	public int getId() {
 		return id;
 	}
@@ -71,5 +67,4 @@ public class BankAccount {
 	public void substract(double amount) {
 		this.amount -= amount;
 	}
-	
 }
