@@ -68,10 +68,10 @@ public class BankOperationController {
 		while (result.next()) {
 			BankTradesType type = BankTrades.getBankTradesTypeFromString(result.getString("type"));
 			double amount = result.getDouble("amount");
-			String nom = result.getString("nom");
-			String prenom = result.getString("prenom");
+			String name = result.getString("nom");
+			String lastName = result.getString("prenom");
 			int userId = result.getInt("userId");
-			BT.add(new BankTrades(new User(userId, nom, prenom), type, amount));
+			BT.add(new BankTrades(new User(userId, name, lastName), type, amount));
 		}
 		sql.close();
 		return BT;

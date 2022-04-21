@@ -33,19 +33,19 @@ public class Auth {
 		Statement state = sql.createStatement();
 
 		int tempId = 0;
-		String tempNom = null;
-		String tempPrenom = null;
-		String tempMdp = null;
+		String lastName = null;
+		String firstName = null;
+		String password = null;
 
 		ResultSet result = state.executeQuery("SELECT id, nom, prenom, mdp FROM users WHERE nom = '" + name + "'");
 		while (result.next()) {
 			tempId = result.getInt("id");
-			tempNom = result.getString("nom");
-			tempPrenom = result.getString("prenom");
-			tempMdp = result.getString("mdp");
-			System.out.println(tempNom + " " + tempPrenom + " " + tempMdp);
+			lastName = result.getString("nom");
+			firstName = result.getString("prenom");
+			password = result.getString("mdp");
+			System.out.println(lastName + " " + firstName + " " + password);
 			System.out.println("");
-			Rpwd = tempMdp;
+			Rpwd = password;
 		}
 		state.close();
 
@@ -57,8 +57,8 @@ public class Auth {
 		}
 
 		System.out.println("loggin succeced");
-		this.currentUser = new User(tempId, tempNom, tempPrenom, tempMdp);
-		System.out.println(currentUser.pseudo + " " + currentUser.password);
+		this.currentUser = new User(tempId, lastName, firstName, password);
+		System.out.println(currentUser.firstname + " " + currentUser.password);
 
 		List<Integer> BAIds = BankAccountController.getBankAccountIdsByUser(tempId);
 		if (this.currentUser.bankAccounts == null) {

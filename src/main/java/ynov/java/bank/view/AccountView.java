@@ -40,7 +40,7 @@ public class AccountView extends JPanel{
         JPanel panelGridAccountBalance = new JPanel();
         panelGridAccountBalance.setLayout(new GridLayout(2,1));
         
-        JLabel labelUserBalance = new JLabel("User : " + cont.currentUser.nom);
+        JLabel labelUserBalance = new JLabel("User : " + cont.currentUser.lastname);
         final JComboBox comboAccountBalance = new JComboBox();
         comboAccountBalance.addItem(cont.currentUser.bankAccounts.get(0).getName());
         
@@ -55,7 +55,7 @@ public class AccountView extends JPanel{
         model.addColumn("User.s");
         
         for(BankTrades trade: listTrades) {
-        	model.addRow(new Object[]{ trade.getType() , trade.getAmount(), trade.getUser().nom});
+        	model.addRow(new Object[]{ trade.getType() , trade.getAmount(), trade.getUser().lastname});
         }
         
         JTable table = new JTable(model);
@@ -100,7 +100,7 @@ public class AccountView extends JPanel{
 							System.out.println("Start OP");
 							model.setRowCount(0);
 				        	for(BankTrades trade: listTrades1) {
-				            	model.addRow(new Object[]{ trade.getType() , trade.getAmount(), trade.getUser().nom});
+				            	model.addRow(new Object[]{ trade.getType() , trade.getAmount(), trade.getUser().lastname});
 				            }
 						} catch (EOFException e1) {
 							// TODO Auto-generated catch block
@@ -121,7 +121,7 @@ public class AccountView extends JPanel{
 							System.out.println("Start OP");
 							model.setRowCount(0);
 				        	for(BankTrades trade: listTrades1) {
-				            	model.addRow(new Object[]{ trade.getType() , trade.getAmount(), trade.getUser().nom});
+				            	model.addRow(new Object[]{ trade.getType() , trade.getAmount(), trade.getUser().lastname});
 				            }
 						} catch (EOFException e1) {
 							// TODO Auto-generated catch block
