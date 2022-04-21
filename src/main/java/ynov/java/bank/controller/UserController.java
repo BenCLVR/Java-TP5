@@ -13,7 +13,7 @@ public class UserController {
 		Connection sql = conn.getConnexion();
 		Statement state = sql.createStatement();
 
-        ResultSet result = state.executeQuery("SELECT id from users WHERE name = '" + name + "'");
+        ResultSet result = state.executeQuery("SELECT id from users WHERE nom = '" + name + "'");
 		int id = 0;
 		while (result.next()) {
 			id = result.getInt("id");
