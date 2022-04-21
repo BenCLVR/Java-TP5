@@ -98,7 +98,8 @@ public class GestAccount extends JPanel {
             public void actionPerformed(ActionEvent e) { 
                  try {
 					contOp.createOperation(cont.currentUser.id, cont.currentUser.getBankAccounts().get(0).getId(), Double.parseDouble(amountTransactionTextField.getText()), (BankTradesType) choiceOperation.getSelectedItem());
-				} catch (NumberFormatException e1) {
+                    cont.refreshBankAccount();
+                } catch (NumberFormatException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				} catch (EOFException e1) {
