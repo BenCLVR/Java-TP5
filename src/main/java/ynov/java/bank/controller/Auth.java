@@ -63,8 +63,6 @@ public class Auth {
 		System.out.println(currentUser.pseudo + " " + currentUser.password);
 
 		List<Integer> BAIds = BankAccountController.getBankAccountIdsByUser(tempId);
-		System.out.println("BAIds ");
-		System.out.println(BAIds.size());
 		if(this.currentUser.bankAccounts == null) {
 			this.currentUser.setBankAccounts(new ArrayList<BankAccount>());
 		}
