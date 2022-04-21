@@ -137,15 +137,15 @@ public class AddAccount extends JPanel{
                 if((textField_1.getText().isEmpty())||(textField_2.getText().isEmpty())||(textField_3.getText().isEmpty())||(comboBox.getSelectedItem().equals("Select")))
                     JOptionPane.showMessageDialog(null, "Data Missing");
 				else
-					try {
-						cont.createAccount(textField_1.getText(), textField_2.getText(), (BankAccountType) comboBox.getSelectedItem());
-					} catch (EOFException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (SQLException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+					// try {
+					// 	cont.createAccount(textField_1.getText(), textField_2.getText(), (BankAccountType) comboBox.getSelectedItem());
+					// } catch (EOFException e) {
+					// 	// TODO Auto-generated catch block
+					// 	e.printStackTrace();
+					// } catch (SQLException e) {
+					// 	// TODO Auto-generated catch block
+					// 	e.printStackTrace();
+					// }
                 JOptionPane.showMessageDialog(null, "Data Submitted");
             }
         });

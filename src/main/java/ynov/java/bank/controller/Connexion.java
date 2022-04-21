@@ -12,25 +12,9 @@ public class Connexion {
 
 	public Connection getConnexion() throws EOFException, SQLException {
 
-		//REFAIRE UNE DB
-
-//		String url = "jdbc:postgresql://localhost:5432/ynov";
-//		String url = "jbdc:postgresql://postgresql-claverie.alwaysdata.net:5432/claverie_bank";
-//		String username = "claverie_greg";
-//		String password = "Azerty=12345";
-//		Properties props = new Properties();
-//		props.setProperty("user", username);
-//		props.setProperty("password", password);
-//		props.setProperty("ssl","true");
-
-		System.out.println("titi");
-
 		Connection conn =DriverManager.getConnection("jdbc:postgresql://postgresql-claverie.alwaysdata.net:5432/claverie_bank", "claverie_greg", "Azerty=12345");
 
 		return conn;
-
-
-
 	}
 
 }
