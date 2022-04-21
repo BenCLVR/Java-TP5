@@ -26,8 +26,6 @@ public class BankOperationController {
 		Statement state = sql.createStatement();
 		state.executeUpdate("INSERT INTO operation (id_user, amount, types, id_account) VALUES ('" + id_user + "','"
 				+ amount + "','" + BTType + "','" + id_account + "')");
-		// ResultSet resultid = state.executeQuery("SELECT id FROM operation WHERE
-		// id_user = '"+id_user+"' AND id_account = '"+id_account+"'");
 		sql.close();
 
 		BankAccount account = BankAccountController.getBankAccountById(id_account);
