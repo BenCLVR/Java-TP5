@@ -49,7 +49,7 @@ public class GestAccount extends JPanel {
         if(cont.currentUser.bankAccounts.get(0) != null) {
         	choiceAccountCombo.addItem(cont.currentUser.bankAccounts.get(0).getName());
         }
-        if(cont.currentUser.bankAccounts.get(1) != null){
+        if(cont.currentUser.bankAccounts.size() > 1){
         	choiceAccountCombo.addItem(cont.currentUser.bankAccounts.get(1).getName());
 		}
         
