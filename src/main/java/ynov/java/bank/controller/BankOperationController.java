@@ -29,7 +29,7 @@ public class BankOperationController {
 		sql.close();
 	}
 
-	public static List<BankTrades> getOperationsByAccountId(int accountId) throws EOFException, SQLException {
+	public List<BankTrades> getOperationsByAccountId(int accountId) throws EOFException, SQLException {
 		Connexion conn = new Connexion();
 		Connection sql = conn.getConnexion();
 		Statement state = sql.createStatement();

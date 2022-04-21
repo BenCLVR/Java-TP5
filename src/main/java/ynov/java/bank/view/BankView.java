@@ -6,6 +6,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.EOFException;
+import java.sql.SQLException;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
@@ -68,10 +70,20 @@ public class BankView extends JPanel{
 		menuItemListComptes.addActionListener(new ActionListener () {
 
 			public void actionPerformed(ActionEvent e) {
-				AccountView test = new AccountView (frame, cont);
-				frame.setContentPane(test);
-				frame.repaint();
-				frame.revalidate();
+				AccountView test;
+				try {
+					test = new AccountView (frame, cont);
+					frame.setContentPane(test);
+					frame.repaint();
+					frame.revalidate();
+				} catch (EOFException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 			};
 		});
 		
