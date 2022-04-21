@@ -78,6 +78,7 @@ public class AddAccount extends JPanel {
 						|| comboBox.getSelectedItem().equals("Select")) {
 					lblTitu2.setVisible(false);
 					textField_4.setVisible(false);
+					textField_4.setText("");
 				}
 			}
 		});
@@ -109,15 +110,22 @@ public class AddAccount extends JPanel {
 							JOptionPane.showMessageDialog(null,
 									"You can not create another account with type " + BAType.toString());
 						}
-						String name = "recup le nom du 2eme user passé dans l'input";
-						int id = UserController.getUserIdByName(name);
-						if (id > 0) {
-							success = contAcc.createAccount(textField_1.getText(), BAType, id);
+						if (!textField_4.getText().isEmpty()) {
+							String name = textField_4.getText();
+							int id = UserController.getUserIdByName(name);
+							if (id > 0) {
+								success = contAcc.linkAccountWithUserId(textField_1.getText(), id);
+								
+							}
+							if (!success) {
+								JOptionPane.showMessageDialog(null,
+										"Second user doesn't exist");
+							}
+							else {
+								JOptionPane.showMessageDialog(null, "Data Submitted");
+							}
 						}
-						if (!success) {
-							JOptionPane.showMessageDialog(null,
-									"Second user doesn't exist");
-						}
+
 
 					} catch (EOFException e) {
 						// TODO Auto-generated catch block
@@ -126,7 +134,7 @@ public class AddAccount extends JPanel {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-				JOptionPane.showMessageDialog(null, "Data Submitted");
+				
 			}
 		});
 
