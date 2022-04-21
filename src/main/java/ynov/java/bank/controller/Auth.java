@@ -80,6 +80,7 @@ public class Auth {
 		if (this.currentUser.bankAccounts == null) {
 			this.currentUser.setBankAccounts(new ArrayList<BankAccount>());
 		}
+		this.currentUser.bankAccounts.clear();
 		for (Integer id : BAIds) {
 			this.currentUser.bankAccounts.add(BankAccountController.getBankAccountById(id));
 		}
