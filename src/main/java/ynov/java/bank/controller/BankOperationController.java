@@ -51,7 +51,7 @@ public class BankOperationController {
 				return;
 		}
 
-		state.executeQuery("UPDATE accounts SET amount = '"+updatedAmount+"' WHERE id = '"+account.getId()+"'");
+		state.executeUpdate("UPDATE accounts SET amount = '"+updatedAmount+"' WHERE id = '"+account.getId()+"'");
 		sql.close();
 	}
 
