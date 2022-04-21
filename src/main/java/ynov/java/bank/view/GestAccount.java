@@ -97,15 +97,16 @@ public class GestAccount extends JPanel {
         
         validationButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) { 
-                 try {
-                	 
+                 try { 	 
                 	 if (choiceAccountCombo.getSelectedItem().equals(cont.currentUser.bankAccounts.get(0).getName())) {
                 		 contOp.createOperation(cont.currentUser.id, cont.currentUser.getBankAccounts().get(0).getId(), Double.parseDouble(amountTransactionTextField.getText()), (BankTradesType) choiceOperation.getSelectedItem());
      					JOptionPane.showMessageDialog(null, "Operation succesfull");
+     					cont.refreshBankAccount();
                 	 }
                 	 else {
                 		 contOp.createOperation(cont.currentUser.id, cont.currentUser.getBankAccounts().get(1).getId(), Double.parseDouble(amountTransactionTextField.getText()), (BankTradesType) choiceOperation.getSelectedItem());
       					JOptionPane.showMessageDialog(null, "Operation succesfull");
+      					cont.refreshBankAccount();
                 	 }
 					
 				} catch (NumberFormatException e1) {
