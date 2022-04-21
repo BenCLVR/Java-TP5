@@ -61,7 +61,7 @@ public class BankAccountController {
 		}
 
 		this.addBankAccount(BAName, BAType);
-		int BAId = this.getBankAccountByIdByName(BAName);
+		int BAId = this.getBankAccountIdByName(BAName);
 
 		Connexion conn = new Connexion();
 		Connection sql = conn.getConnexion();
@@ -82,7 +82,7 @@ public class BankAccountController {
 		sql.close();
 	}
 
-	private int getBankAccountByIdByName(String BAName) throws SQLException, EOFException {
+	private int getBankAccountIdByName(String BAName) throws SQLException, EOFException {
 		Connexion conn = new Connexion();
 		Connection sql = conn.getConnexion();
 		Statement state = sql.createStatement();

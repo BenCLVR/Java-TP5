@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.EOFException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -17,10 +19,10 @@ import javax.swing.JTextField;
 
 import ynov.java.bank.controller.Auth;
 import ynov.java.bank.controller.BankAccountController;
+import ynov.java.bank.modele.BankAccount;
 import ynov.java.bank.modele.BankAccountType;
 
-
-public class AddAccount extends JPanel{
+public class AddAccount extends JPanel {
 
 	public AddAccount(final JFrame frame, final Auth cont) {
 
@@ -30,25 +32,23 @@ public class AddAccount extends JPanel{
 
 		gbcp.gridx = 0;
 		gbcp.gridy = 0;
-		
+
 		JLabel lblTitre = new JLabel("Titre du Compte");
 		add(lblTitre, gbcp);
 
 		gbcp.gridx = 1;
 		gbcp.gridy = 0;
-		
+
 		final JTextField textField_1 = new JTextField();
 		add(textField_1, gbcp);
 		textField_1.setColumns(10);
-		
-		
+
 		gbcp.gridx = 4;
 		gbcp.gridy = 0;
 		final JLabel lblTitu2 = new JLabel("Second Titulaire");
 		lblTitu2.setVisible(false);
 		add(lblTitu2, gbcp);
-		
-		
+
 		gbcp.gridx = 3;
 		gbcp.gridy = 1;
 		final JTextField textField_4 = new JTextField();
@@ -56,22 +56,10 @@ public class AddAccount extends JPanel{
 		add(textField_4, gbcp);
 		textField_4.setColumns(10);
 
-
-
-
-
-		
-		
-
-		
-
 		gbcp.gridx = 12;
 		gbcp.gridy = 0;
 		JLabel lblAccount = new JLabel("Type de compte");
 		add(lblAccount, gbcp);
-
-		
-		
 
 		gbcp.gridx = 13;
 		gbcp.gridy = 0;
@@ -79,20 +67,14 @@ public class AddAccount extends JPanel{
 		comboBox.addItem("Select");
 		comboBox.addItem(BankAccountType.CURRENT);
 		comboBox.addItem(BankAccountType.JOINT);
-		
 
-		
-
-
-
-		comboBox.addActionListener(new ActionListener() 
-		{
-			public void actionPerformed(ActionEvent arg0) 
-			{
+		comboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
 				if (comboBox.getSelectedItem().equals(BankAccountType.JOINT)) {
 					lblTitu2.setVisible(true);
-					textField_4.setVisible(true);				}
-				else if (comboBox.getSelectedItem().equals(BankAccountType.CURRENT) || comboBox.getSelectedItem().equals("Select")) {
+					textField_4.setVisible(true);
+				} else if (comboBox.getSelectedItem().equals(BankAccountType.CURRENT)
+						|| comboBox.getSelectedItem().equals("Select")) {
 					lblTitu2.setVisible(false);
 					textField_4.setVisible(false);
 				}
@@ -100,7 +82,6 @@ public class AddAccount extends JPanel{
 		});
 		add(comboBox, gbcp);
 
-		
 		gbcp.gridx = 6;
 		gbcp.gridy = 0;
 		JButton btnClear = new JButton("Clear");
@@ -109,40 +90,47 @@ public class AddAccount extends JPanel{
 		JButton btnSubmit = new JButton("submit");
 
 		add(btnSubmit, gbcp);
-		
-		
+
 		btnSubmit.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent arg0) {
-                if((textField_1.getText().isEmpty())||(comboBox.getSelectedItem().equals("Select")))
-                    JOptionPane.showMessageDialog(null, "Data Missing");
+			public void actionPerformed(ActionEvent arg0) {
+				if ((textField_1.getText().isEmpty()) || (comboBox.getSelectedItem().equals("Select")))
+					JOptionPane.showMessageDialog(null, "Data Missing");
 				else
-					 try {
-					 	contAcc.createAccount(textField_1.getText(), (BankAccountType) comboBox.getSelectedItem(), cont.currentUser.getId());
-					 } catch (EOFException e) {
-					 	// TODO Auto-generated catch block
-					 	e.printStackTrace();
-					 } catch (SQLException e) {
-					 	// TODO Auto-generated catch block
-					 	e.printStackTrace();
-					 }
-                JOptionPane.showMessageDialog(null, "Data Submitted");
-            }
-        });
-         
-        btnClear.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                textField_1.setText(null);
-                textField_4.setText(null);
-                textField_4.setVisible(false);
-                lblTitu2.setVisible(false);
-                comboBox.setSelectedItem("Select");
-                 
-                 
-            }
-        });
+					try {
+						contAcc.createAccount(textField_1.getText(), (BankAccountType) comboBox.getSelectedItem(),
+								cont.currentUser.getId());
+
+						List<Integer> BAIds = BankAccountController.getBankAccountIdsByUser(cont.currentUser.getId());
+						if (cont.currentUser.bankAccounts == null) {
+							cont.currentUser.setBankAccounts(new ArrayList<BankAccount>());
+						}
+
+						for (Integer id : BAIds) {
+							cont.currentUser.bankAccounts.add(BankAccountController.getBankAccountById(id));
+						}
+
+					} catch (EOFException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				JOptionPane.showMessageDialog(null, "Data Submitted");
+			}
+		});
+
+		btnClear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textField_1.setText(null);
+				textField_4.setText(null);
+				textField_4.setVisible(false);
+				lblTitu2.setVisible(false);
+				comboBox.setSelectedItem("Select");
+
+			}
+		});
 
 	}
-	
+
 }
-
-
