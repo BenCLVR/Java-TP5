@@ -79,4 +79,8 @@ public class Auth {
 		return true;
 	}
 
+	public void signOut(){
+		this.currentUser = null;
+	}
+
 }
