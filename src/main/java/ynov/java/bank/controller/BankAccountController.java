@@ -67,7 +67,7 @@ public class BankAccountController {
 		Connection sql = conn.getConnexion();
 		Statement state = sql.createStatement();
 
-		state.executeQuery("INSERT INTO linkaccount (id_user, id_account) VALUES ('"+userId+"', '"+BAId+"')");
+		state.executeUpdate("INSERT INTO linkaccount (id_user, id_account) VALUES ('"+userId+"', '"+BAId+"')");
 		sql.close();
 		return true;
 
@@ -77,7 +77,7 @@ public class BankAccountController {
 		Connexion conn = new Connexion();
 		Connection sql = conn.getConnexion();
 		Statement state = sql.createStatement();
-		state.executeQuery(
+		state.executeUpdate(
 				"INSERT INTO accounts (name, amount, types) VALUES ('" + accountName + "', 0,'" + BAType + "')");
 		sql.close();
 	}
