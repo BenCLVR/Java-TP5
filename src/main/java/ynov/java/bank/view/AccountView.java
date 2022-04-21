@@ -6,9 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.EOFException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -28,14 +26,17 @@ public class AccountView extends JPanel {
 
 	public AccountView(final JFrame frame, final Auth cont) throws SQLException, EOFException {
 
+		//CONTROLLER
+		final BankOperationController contOp = new BankOperationController();
+
+		//PANEL
 		JPanel panelLastTransaction = new JPanel();
 
-		final BankOperationController contOp = new BankOperationController();
 
 		JPanel panelGridRight = new JPanel();
 		panelGridRight.setLayout(new GridLayout(4, 1));
 
-		JButton btnGestAccount = new JButton("Retirer/Ajouter de l'argent");
+		JButton btnGestAccount = new JButton("Remove/Add money");
 
 		JPanel panelGridAccountBalance = new JPanel();
 		panelGridAccountBalance.setLayout(new GridLayout(2, 1));
@@ -45,7 +46,6 @@ public class AccountView extends JPanel {
 
 		final JLabel labelAmountBalance = new JLabel("Your balance : N/C");
 
-		// JButton btnValidateBalance = new JButton("Validate");
 
 		final DefaultTableModel model = new DefaultTableModel();
 		model.addColumn("Type");
@@ -54,6 +54,7 @@ public class AccountView extends JPanel {
 
 		JTable table = new JTable(model);
 
+		//CHECK ACCOUNT
 		if (cont.currentUser.bankAccounts.size() > 0) {
 			panelGridRight.add(btnGestAccount);
 			comboAccountBalance.addItem(cont.currentUser.bankAccounts.get(0).getName());
@@ -64,6 +65,7 @@ public class AccountView extends JPanel {
 			}
 		}
 
+		//CHECK ACCOUNT 2
 		if (cont.currentUser.bankAccounts.size() > 1) {
 			comboAccountBalance.addItem(cont.currentUser.bankAccounts.get(1).getName());
 		}
@@ -72,7 +74,6 @@ public class AccountView extends JPanel {
 		panelLastTransaction.add(scroll, BorderLayout.CENTER);
 
 		panelGridAccountBalance.add(comboAccountBalance);
-		// panelGridAccountBalance.add(btnValidateBalance);
 		panelGridRight.add(labelUserBalance);
 		panelGridRight.add(panelGridAccountBalance);
 		panelGridRight.add(labelAmountBalance);
@@ -80,6 +81,9 @@ public class AccountView extends JPanel {
 		this.add(panelLastTransaction);
 		this.add(panelGridRight, BorderLayout.EAST);
 
+		
+		
+		//GO GEST ACCOUNT
 		btnGestAccount.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				GestAccount test = new GestAccount(frame, cont);
@@ -89,6 +93,7 @@ public class AccountView extends JPanel {
 			};
 		});
 
+		//SELECT ACCOUNT
 		comboAccountBalance.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				BankAccount BA;

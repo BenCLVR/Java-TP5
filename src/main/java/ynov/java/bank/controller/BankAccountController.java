@@ -27,7 +27,6 @@ public class BankAccountController {
 		linkAccountRequest.close();
 
 		return accountIds;
-		// return new BankAccount(1, BankAccountType.CURRENT, 123.0);
 	}
 
 	public static BankAccount getBankAccountById(Integer BAId) throws EOFException, SQLException {

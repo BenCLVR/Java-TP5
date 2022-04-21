@@ -18,7 +18,6 @@ import javax.swing.SwingConstants;
 
 import ynov.java.bank.controller.Auth;
 import ynov.java.bank.controller.BankOperationController;
-import ynov.java.bank.modele.BankAccountType;
 import ynov.java.bank.modele.BankTradesType;
 
 
@@ -27,7 +26,10 @@ public class GestAccount extends JPanel {
 
 	public GestAccount(JFrame frame ,final Auth cont) {
 		
+		//CONTROLLER
 		final BankOperationController contOp = new BankOperationController();
+		
+		//PANEL ITEMS
 		this.setLayout(new BorderLayout());
 		 
         JPanel ColumnPanel  = new JPanel();
@@ -36,13 +38,13 @@ public class GestAccount extends JPanel {
         JPanel labelWelcomePanel = new JPanel();
         labelWelcomePanel.setLayout(new BorderLayout());
         
-        JLabel welcomeLabel = new JLabel("Gestion du Compte", SwingConstants.CENTER);
+        JLabel welcomeLabel = new JLabel("Account management", SwingConstants.CENTER);
         
         JPanel emptyPanel;
         
         JPanel choiceAccountPanel = new JPanel();
         
-        JLabel choiceAccountLabel = new JLabel("Sélectionner le compte désirer");
+        JLabel choiceAccountLabel = new JLabel("Select the desired account");
         
         final JComboBox choiceAccountCombo = new JComboBox();
         
@@ -55,7 +57,7 @@ public class GestAccount extends JPanel {
         
         
         
-        JLabel choiceOperationLabel = new JLabel("Sélectionner l'opération désirer");
+        JLabel choiceOperationLabel = new JLabel("Select the desired operation");
         final JComboBox choiceOperation = new JComboBox();
         choiceOperation.addItem("Select");
 		choiceOperation.addItem(BankTradesType.ADD);
@@ -64,7 +66,7 @@ public class GestAccount extends JPanel {
         
         JPanel amountTransactionPanel = new JPanel();
         
-        JLabel amountTransactionLabel = new JLabel("Montant");
+        JLabel amountTransactionLabel = new JLabel("Amount");
         
         final JTextField amountTransactionTextField = new JTextField();
         amountTransactionTextField.setColumns(12);
@@ -95,6 +97,7 @@ public class GestAccount extends JPanel {
     
         this.add(ColumnPanel);
         
+        //START OPERATION ON ACCOUNT
         validationButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) { 
                  try { 	 
