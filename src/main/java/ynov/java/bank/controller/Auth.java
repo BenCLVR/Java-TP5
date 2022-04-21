@@ -17,11 +17,11 @@ public class Auth {
 	Connexion conn = new Connexion();
 	public User currentUser = null;
 
-	public int createUser(String name, String surname, String pwd) throws EOFException, SQLException {
+	public int createUser(String lastname, String firstname, String pwd) throws EOFException, SQLException {
 		Connection sql = conn.getConnexion();
 		Statement state = sql.createStatement();
 		int result = state.executeUpdate(
-				"INSERT INTO users (nom, prenom, mdp) VALUES ('" + name + "','" + surname + "','" + pwd + "')");
+				"INSERT INTO users (nom, prenom, mdp) VALUES ('" + lastname + "','" + firstname + "','" + pwd + "')");
 		sql.close();
 		System.out.println("User added");
 		return result;
