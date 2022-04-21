@@ -60,7 +60,7 @@ public class BankOperationController {
 		Connection sql = conn.getConnexion();
 		Statement state = sql.createStatement();
 		ResultSet result = state.executeQuery(
-				"SELECT o.types type, o.amount amount, o.id_user userId, u.nom nom , u.prenom prenom FROM operation o JOIN accounts a ON a.id = o.id_account JOIN users u ON u.id = o.id_user WHERE a.id '"
+				"SELECT o.types type, o.amount amount, o.id_user userId, u.nom nom , u.prenom prenom FROM operation o JOIN accounts a ON a.id = o.id_account JOIN users u ON u.id = o.id_user WHERE a.id = '"
 						+ accountId + "'");
 
 		List<BankTrades> BT = new ArrayList<BankTrades>();
