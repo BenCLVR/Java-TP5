@@ -18,7 +18,7 @@ import javax.swing.JTextField;
 
 import ynov.java.bank.controller.Auth;
 
-public class Bank {
+public class Bank extends JPanel {
 
 	
 	JPanel currentPanel;
