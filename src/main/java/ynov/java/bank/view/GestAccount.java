@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -43,7 +44,7 @@ public class GestAccount extends JPanel {
         
         JLabel choiceAccountLabel = new JLabel("Sélectionner le compte désirer");
         
-        JComboBox choiceAccountCombo = new JComboBox();
+        final JComboBox choiceAccountCombo = new JComboBox();
         
         if(cont.currentUser.bankAccounts.get(0) != null) {
         	choiceAccountCombo.addItem(cont.currentUser.bankAccounts.get(0).getName());
@@ -97,7 +98,16 @@ public class GestAccount extends JPanel {
         validationButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) { 
                  try {
-					contOp.createOperation(cont.currentUser.id, cont.currentUser.getBankAccounts().get(0).getId(), Double.parseDouble(amountTransactionTextField.getText()), (BankTradesType) choiceOperation.getSelectedItem());
+                	 
+                	 if (choiceAccountCombo.getSelectedItem().equals(cont.currentUser.bankAccounts.get(0).getName())) {
+                		 contOp.createOperation(cont.currentUser.id, cont.currentUser.getBankAccounts().get(0).getId(), Double.parseDouble(amountTransactionTextField.getText()), (BankTradesType) choiceOperation.getSelectedItem());
+     					JOptionPane.showMessageDialog(null, "Operation succesfull");
+                	 }
+                	 else {
+                		 contOp.createOperation(cont.currentUser.id, cont.currentUser.getBankAccounts().get(1).getId(), Double.parseDouble(amountTransactionTextField.getText()), (BankTradesType) choiceOperation.getSelectedItem());
+      					JOptionPane.showMessageDialog(null, "Operation succesfull");
+                	 }
+					
 				} catch (NumberFormatException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

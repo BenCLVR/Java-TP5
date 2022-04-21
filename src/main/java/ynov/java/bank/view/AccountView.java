@@ -55,7 +55,7 @@ public class AccountView extends JPanel{
         model.addColumn("User.s");
         
         for(BankTrades trade: listTrades) {
-        	model.addRow(new Object[]{ trade.getType() , trade.getAmount(), trade.getUser()});
+        	model.addRow(new Object[]{ trade.getType() , trade.getAmount(), trade.getUser().nom});
         }
         
         JTable table = new JTable(model);
@@ -100,7 +100,7 @@ public class AccountView extends JPanel{
 							System.out.println("Start OP");
 							model.setRowCount(0);
 				        	for(BankTrades trade: listTrades1) {
-				            	model.addRow(new Object[]{ trade.getType() , trade.getAmount(), trade.getUser()});
+				            	model.addRow(new Object[]{ trade.getType() , trade.getAmount(), trade.getUser().nom});
 				            }
 						} catch (EOFException e1) {
 							// TODO Auto-generated catch block
@@ -113,6 +113,23 @@ public class AccountView extends JPanel{
 					}
 					else{
 						labelAmountBalance.setText("Your balance :" + cont.currentUser.bankAccounts.get(0).getAmount());
+						List<BankTrades> listTrades1;
+						try {
+							System.out.println("Start OP");
+							System.out.println(cont.currentUser.bankAccounts.get(0).getId());
+							listTrades1 = contOp.getOperationsByAccountId(cont.currentUser.bankAccounts.get(0).getId());
+							System.out.println("Start OP");
+							model.setRowCount(0);
+				        	for(BankTrades trade: listTrades1) {
+				            	model.addRow(new Object[]{ trade.getType() , trade.getAmount(), trade.getUser().nom});
+				            }
+						} catch (EOFException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 					};
 			}
 		});
