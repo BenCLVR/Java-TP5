@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import ynov.java.bank.controller.BankAccountController;
+import ynov.java.bank.modele.BankAccountType;
 
 
 public class AddAccount extends JPanel{
@@ -101,8 +102,9 @@ public class AddAccount extends JPanel{
 		gbcp.gridy = 0;
 		final JComboBox comboBox = new JComboBox();
 		comboBox.addItem("Select");
-		comboBox.addItem("Courant");
-		comboBox.addItem("Joint");
+		comboBox.addItem(BankAccountType.CURRENT);
+		comboBox.addItem(BankAccountType.JOINT);
+		
 
 		
 
@@ -112,7 +114,7 @@ public class AddAccount extends JPanel{
 		{
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				if (comboBox.getSelectedItem().equals("Compte Join")) {
+				if (comboBox.getSelectedItem().equals(BankAccountType.JOINT)) {
 					lblTitu2.setVisible(true);
 					textField_4.setVisible(true);				}
 			}
@@ -136,7 +138,7 @@ public class AddAccount extends JPanel{
                     JOptionPane.showMessageDialog(null, "Data Missing");
 				else
 					try {
-						cont.createAccount(textField_1.getText(), textField_2.getText(), comboBox.getSelectedItem());
+						cont.createAccount(textField_1.getText(), textField_2.getText(), (BankAccountType) comboBox.getSelectedItem());
 					} catch (EOFException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

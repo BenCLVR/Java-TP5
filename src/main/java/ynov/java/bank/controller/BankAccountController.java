@@ -51,7 +51,7 @@ public class BankAccountController {
 
 	}
 	
-	public int createAccount(String name, String amount, Object object ) throws EOFException, SQLException {
+	public int createAccount(String name, String amount, BankAccountType object ) throws EOFException, SQLException {
 		Connexion conn = new Connexion();
 		Connection sql = conn.getConnexion();
 		Statement state = sql.createStatement();
