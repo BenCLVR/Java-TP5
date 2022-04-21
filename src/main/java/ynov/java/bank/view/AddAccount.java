@@ -19,6 +19,7 @@ import javax.swing.JTextField;
 
 import ynov.java.bank.controller.Auth;
 import ynov.java.bank.controller.BankAccountController;
+import ynov.java.bank.controller.UserController;
 import ynov.java.bank.modele.BankAccount;
 import ynov.java.bank.modele.BankAccountType;
 
@@ -107,6 +108,15 @@ public class AddAccount extends JPanel {
 						} else {
 							JOptionPane.showMessageDialog(null,
 									"You can not create another account with type " + BAType.toString());
+						}
+						String name = "recup le nom du 2eme user passé dans l'input";
+						int id = UserController.getUserIdByName(name);
+						if (id > 0) {
+							success = contAcc.createAccount(textField_1.getText(), BAType, id);
+						}
+						if (!success) {
+							JOptionPane.showMessageDialog(null,
+									"Second user doesn't exist");
 						}
 
 					} catch (EOFException e) {
