@@ -6,9 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import ynov.java.bank.modele.BankAccount;
 import ynov.java.bank.modele.User;
@@ -63,7 +61,7 @@ public class Auth {
 		System.out.println(currentUser.pseudo + " " + currentUser.password);
 
 		List<Integer> BAIds = BankAccountController.getBankAccountIdsByUser(tempId);
-		if(this.currentUser.bankAccounts == null) {
+		if (this.currentUser.bankAccounts == null) {
 			this.currentUser.setBankAccounts(new ArrayList<BankAccount>());
 		}
 
@@ -72,12 +70,22 @@ public class Auth {
 		}
 
 		System.out.println(this.currentUser.bankAccounts.size());
-		 
 
 		return true;
 	}
 
-	public void signOut(){
+	public void refreshBankAccount() throws EOFException, SQLException {
+		List<Integer> BAIds = BankAccountController
+				.getBankAccountIdsByUser(this.currentUser.getId());
+		if (this.currentUser.bankAccounts == null) {
+			this.currentUser.setBankAccounts(new ArrayList<BankAccount>());
+		}
+		for (Integer id : BAIds) {
+			this.currentUser.bankAccounts.add(BankAccountController.getBankAccountById(id));
+		}
+	}
+
+	public void signOut() {
 		this.currentUser = null;
 	}
 
