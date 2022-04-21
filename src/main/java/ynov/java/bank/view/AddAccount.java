@@ -15,13 +15,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import ynov.java.bank.controller.BankController;
+import ynov.java.bank.controller.BankAccountController;
+
 
 public class AddAccount extends JPanel{
 
 	public AddAccount(final JFrame frame) {
 
-		final BankController cont = new BankController();
+		final BankAccountController cont = new BankAccountController();
 		GridBagConstraints gbcp = new GridBagConstraints();
 		gbcp.insets = new Insets(5, 5, 5, 5);
 
