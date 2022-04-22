@@ -2,11 +2,14 @@ package ynov.java.bank.view;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.EOFException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Vector;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -24,8 +27,8 @@ public class ViewBeneficiary extends JPanel
 	{
 		// this is mainpanel
 		// PANEL & LAYOUT
-		JTable table = new JTable(); // tableau de données
-		JScrollPane scrollPanel = new JScrollPane(table); // panneau coulissant dans lequel se trouve le tableau de données
+		final JTable table = new JTable(); // tableau de donnï¿½es
+		JScrollPane scrollPanel = new JScrollPane(table); // panneau coulissant dans lequel se trouve le tableau de donnï¿½es
 		//JPanel gestionPanel = new JPanel(); // 
 		//gestionPanel.setLayout(new BoxLayout(gestionPanel, BoxLayout.Y_AXIS));
 
@@ -46,6 +49,7 @@ public class ViewBeneficiary extends JPanel
 			defTabMod.addRow(createTableRowFromBeneficiary(beneficiaryOfCurrentUser));
 		}
 		
+		JButton btnClear = new JButton("Delete");
 		// COMPOSITION
 		GridBagConstraints gbc = new GridBagConstraints();
 		this.setLayout(new GridBagLayout());
@@ -55,8 +59,26 @@ public class ViewBeneficiary extends JPanel
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.gridwidth = 1;
-		table.setModel(defTabMod); // ajouter les lignes et colones au tabeau de données.
-		this.add(scrollPanel, gbc); // ajouter le tout à la vue
+		table.setModel(defTabMod); // ajouter les lignes et colones au tabeau de donnï¿½es.
+		this.add(scrollPanel, gbc); // ajouter le tout ï¿½ la vue
+		
+		this.add(btnClear);
+		
+		btnClear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String benremove = table.getModel().getValueAt(table.getSelectedRow(), 0).toString();
+				
+				try {
+					BankBeneficiaryController.removeBeneciary(benremove);
+				} catch (EOFException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 	}
 	
 	private Vector<String> createTableRowFromBeneficiary(BankAccount beneficiary)
@@ -67,5 +89,8 @@ public class ViewBeneficiary extends JPanel
 
 		return (row);
 	}
+	
+
+
 
 }
