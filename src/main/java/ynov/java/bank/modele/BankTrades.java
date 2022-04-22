@@ -78,8 +78,10 @@ public class BankTrades {
 	public static BankTradesType getBankTradesTypeFromString(String str) {
 		if (str.equals("ADD")) {
 			return BankTradesType.ADD;
-		} else {
+		} else if(str.equals("REMOVE")) {
 			return BankTradesType.REMOVE;
+		} else {
+			return BankTradesType.TRANSFERT;
 		}
 	}
 
