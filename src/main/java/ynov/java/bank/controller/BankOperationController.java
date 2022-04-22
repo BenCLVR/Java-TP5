@@ -31,6 +31,18 @@ public class BankOperationController {
 		BankAccount account = BankAccountController.getBankAccountById(id_account);
 		this.updateAccountAmountByAccountId(account, amount, BTType);
 	}
+	public void createOperation(int id_user, int id_account, double amount, BankTradesType BTType, BankTradesType BTTypeCalc)
+			throws EOFException, SQLException {
+		Connexion conn = new Connexion();
+		Connection sql = conn.getConnexion();
+		Statement state = sql.createStatement();
+		state.executeUpdate("INSERT INTO operation (id_user, amount, types, id_account) VALUES ('" + id_user + "','"
+				+ amount + "','" + BTTypeCalc + "','" + id_account + "')");
+		sql.close();
+
+		BankAccount account = BankAccountController.getBankAccountById(id_account);
+		this.updateAccountAmountByAccountId(account, amount, BTType);
+	}
 
 	// private boolean isBeneficiary(userId, accountid)
 	// // if si current user n'a pas le beneficiaire
