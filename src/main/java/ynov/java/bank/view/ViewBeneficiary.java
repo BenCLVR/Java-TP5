@@ -47,16 +47,25 @@ public class ViewBeneficiary extends JPanel
 		}
 		
 		// COMPOSITION
+		table.setModel(defTabMod); // ajouter les lignes et colones au tabeau de données.
 		GridBagConstraints gbc = new GridBagConstraints();
 		this.setLayout(new GridBagLayout());
+		gbc.ipadx = 8;
+		// gbc.ipadx = ;
 		gbc.fill = GridBagConstraints.BOTH;
-		gbc.weightx = 1;
-		gbc.weighty = 1;
+		gbc.weightx = 4;
+		gbc.weighty = 8;
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.gridwidth = 1;
-		table.setModel(defTabMod); // ajouter les lignes et colones au tabeau de données.
-		this.add(scrollPanel, gbc); // ajouter le tout à la vue
+		this.add(scrollPanel, gbc); // ajouter le tout à la vue, avec le style de gbc
+		/*gbc.weightx = 2;
+		gbc.weighty = 1;
+		gbc.gridx = 5;
+		gbc.gridy = 1;
+		gbc.gridwidth = 1;
+		this.add(deleteButton, gbc);*/
+		
 	}
 	
 	private Vector<String> createTableRowFromBeneficiary(BankAccount beneficiary)
