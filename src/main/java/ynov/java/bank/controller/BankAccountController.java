@@ -88,12 +88,12 @@ public class BankAccountController {
 				if (new Integer(i).equals(BAIds.size() - 1)) {
 					str = str.concat(BAIds.get(i).toString());
 				} else {
-					str = str.concat(BAIds.get(i).toString() + ",");
+					str = str.concat(BAIds.get(i).toString() + ", ");
 				}
 			}
 
 			ResultSet result = bankAccountRequest
-					.executeQuery("SELECT name, amount, types, id FROM accounts WHERE id IN ('" + str + "')");
+					.executeQuery("SELECT name, amount, types, id FROM accounts WHERE id IN (" + str + ")");
 
 			String name = "";
 			double amount = 0;
