@@ -37,9 +37,10 @@ public class BankOperationController {
 	// if(BTType.equals(BTType.TRANSFERT) && !this.isBeneficiary(userId, accountid))
 	// return false;
 
-	public void createTransfert(int userId, int debitAccount, int depositAccount, double amount) throws EOFException, SQLException {
+	public void createTransfert(int userId, int debitAccount, String depositAccountName, double amount) throws EOFException, SQLException {
+		int depositAccountId = new BankAccountController().getBankAccountIdByName(depositAccountName);
 		createOperation(userId, debitAccount, amount, BankTradesType.REMOVE);
-		createOperation(userId, depositAccount, amount, BankTradesType.ADD);
+		createOperation(userId, depositAccountId, amount, BankTradesType.ADD);
 	}
 
 	private void updateAccountAmountByAccountId(BankAccount account, double amount, BankTradesType BTType)
