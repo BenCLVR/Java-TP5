@@ -32,7 +32,18 @@ public class BankOperationController {
 		this.updateAccountAmountByAccountId(account, amount, BTType);
 	}
 
-	private void updateAccountAmountByAccountId(BankAccount account, double amount, BankTradesType BTType) throws EOFException, SQLException {
+	// private boolean isBeneficiary(userId, accountid)
+	// // if si current user n'a pas le beneficiaire
+	// if(BTType.equals(BTType.TRANSFERT) && !this.isBeneficiary(userId, accountid))
+	// return false;
+
+	public void createTransfert(int userId, int debitAccount, int depositAccount, double amount) throws EOFException, SQLException {
+		createOperation(userId, debitAccount, amount, BankTradesType.REMOVE);
+		createOperation(userId, depositAccount, amount, BankTradesType.ADD);
+	}
+
+	private void updateAccountAmountByAccountId(BankAccount account, double amount, BankTradesType BTType)
+			throws EOFException, SQLException {
 		Connexion conn = new Connexion();
 		Connection sql = conn.getConnexion();
 		Statement state = sql.createStatement();
@@ -45,11 +56,12 @@ public class BankOperationController {
 			case REMOVE:
 				updatedAmount = account.getAmount() - amount;
 				break;
-			default: 
+			default:
 				return;
 		}
 
-		state.executeUpdate("UPDATE accounts SET amount = '"+updatedAmount+"' WHERE id = '"+account.getId()+"'");
+		state.executeUpdate(
+				"UPDATE accounts SET amount = '" + updatedAmount + "' WHERE id = '" + account.getId() + "'");
 		sql.close();
 	}
 
