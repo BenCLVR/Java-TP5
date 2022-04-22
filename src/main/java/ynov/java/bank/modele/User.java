@@ -8,6 +8,7 @@ public class User {
 	public String lastname;
 	public String firstname;
 	public String password;
+	public List<BankAccount> beneficiaries;
 	
 	public User(int id, String lastname, String firstname, String password) {
 		this.id = id;

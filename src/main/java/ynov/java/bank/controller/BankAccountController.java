@@ -51,6 +51,31 @@ public class BankAccountController {
 
 	}
 
+	public static List<BankAccount> getBankAccountByIds(List<Integer> BAIds) throws EOFException, SQLException {
+		Connexion conn = new Connexion();
+		Connection sql = conn.getConnexion();
+		Statement bankAccountRequest = sql.createStatement();
+
+		ResultSet result = bankAccountRequest
+				.executeQuery("SELECT name, amount, types, id FROM accounts WHERE id IN('" + BAIds + "')");
+
+		String name = "";
+		double amount = 0;
+		int id = 0;
+
+		List<BankAccount> BAList = new ArrayList<BankAccount>();
+		while (result.next()) {
+			name = result.getString("name");
+			amount = result.getDouble("amount");
+			id = result.getInt("id");
+			BAList.add(new BankAccount(id, name, BankAccountType.CURRENT, amount));
+		}
+		bankAccountRequest.close();
+
+		return BAList;
+
+	}
+
 	public boolean createAccount(String BAName, BankAccountType BAType, int userId)
 			throws EOFException, SQLException {
 
@@ -99,7 +124,7 @@ public class BankAccountController {
 		sql.close();
 	}
 
-	private int getBankAccountIdByName(String BAName) throws SQLException, EOFException {
+	public int getBankAccountIdByName(String BAName) throws SQLException, EOFException {
 		Connexion conn = new Connexion();
 		Connection sql = conn.getConnexion();
 		Statement state = sql.createStatement();
