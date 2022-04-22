@@ -128,10 +128,20 @@ public class BankView extends JPanel{
 		menuItemTransfert.addActionListener(new ActionListener () {
 
 			public void actionPerformed(ActionEvent e) {
-				BankTransfert test = new BankTransfert (frame, cont);
-				frame.setContentPane(test);
+				BankTransfert tran = null;
+				try {
+					tran = new BankTransfert (frame, cont);
+				} catch (EOFException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				frame.setContentPane(tran);
 				frame.repaint();
 				frame.revalidate();
+				
 			};
 		});
 		
