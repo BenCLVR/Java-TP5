@@ -24,10 +24,11 @@ public class BankBeneficiary {
 		Connection sql = conn.getConnexion();
 		Statement state = sql.createStatement();
 
-        state.executeUpdate("INSERT INTO beneficiary (id_user, id_account_benef) VALUES ('" + userId + "', '" + accountId + "')");
+        int result = state.executeUpdate("INSERT INTO beneficiary (id_user, id_account_benef) VALUES ('" + userId + "', '" + accountId + "')");
 		sql.close();
+        if(result > 0) return true;
 
-        return true;
+        return false;
     }
 
     public static void removeBeneciary(int idAccount) throws EOFException, SQLException {
