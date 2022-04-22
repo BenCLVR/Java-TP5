@@ -25,11 +25,14 @@ public class BankView extends JPanel{
 		JMenuBar menuBar = new JMenuBar();
 		JMenu options = new JMenu("Options");
 		JMenu comptes = new JMenu("My Accounts");
+		JMenu benef = new JMenu("My Beneficiaries");
 		JMenuItem menuItemLeave = new JMenuItem("Leave");
 		JMenuItem menuItemHome = new JMenuItem("Home");
 		JMenuItem menuItemListComptes = new JMenuItem("My Accounts");
 		JMenuItem menuItemAddComptes = new JMenuItem("Add Account");
 		JMenuItem menuItemTransfert = new JMenuItem("Transferts");
+		JMenuItem menuItemAddBenef = new JMenuItem("Add a Beneficiaries");
+		JMenuItem menuItemViewBenef = new JMenuItem("Show My Beneficiaries");
 		
 		//PANEL ITEMS
 		JLabel labelApp = new JLabel("Bank management application");
@@ -41,8 +44,11 @@ public class BankView extends JPanel{
 		comptes.add(menuItemListComptes);
 		comptes.add(menuItemAddComptes);
 		comptes.add(menuItemTransfert);
+		benef.add(menuItemAddBenef);
+		benef.add(menuItemViewBenef);
 		menuBar.add(options);
 		menuBar.add(comptes);
+		menuBar.add(benef);
 		
 		frame.setJMenuBar(menuBar);
 		
@@ -122,6 +128,38 @@ public class BankView extends JPanel{
 				frame.setContentPane(test);
 				frame.repaint();
 				frame.revalidate();
+			};
+		});
+		
+		menuItemAddBenef.addActionListener(new ActionListener () {
+
+			public void actionPerformed(ActionEvent e) {
+				AddBenef test = new AddBenef (frame, cont);
+				frame.setContentPane(test);
+				frame.repaint();
+				frame.revalidate();
+			};
+		});
+		
+		menuItemViewBenef.addActionListener(new ActionListener () {
+
+			public void actionPerformed(ActionEvent e) {
+				
+				try {
+					ViewBeneficiary test = null;
+					test = new ViewBeneficiary (frame, cont);
+					frame.setContentPane(test);
+					frame.repaint();
+					frame.revalidate();
+					
+				} catch (EOFException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 			};
 		});
 		
