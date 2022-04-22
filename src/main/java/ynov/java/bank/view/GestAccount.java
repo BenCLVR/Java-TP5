@@ -11,10 +11,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-public class GestAccount extends JPanel {
+public class GestAccount extends JPanel
+{
 
-	public GestAccount(JFrame frame) {
-		
+	public GestAccount(JFrame frame)
+	{
 		this.setLayout(new BorderLayout());
 		 
         JPanel ColumnPanel  = new JPanel();
@@ -29,41 +30,45 @@ public class GestAccount extends JPanel {
         
         JPanel choiceAccountPanel = new JPanel();
         
-        JLabel choiceAccountLabel = new JLabel("SÃ©lectionner le compte dÃ©sirer");
+        JLabel choiceAccountLabel = new JLabel("Sélectionner le compte désiré");
         
         JComboBox choiceAccountCombo = new JComboBox();
+        // 
+        // WHILE ACCOUNTS > ADD TO COMBO
+        // choiceAccountCombo.addItem("accountname");
+        // doit récupérer de Auth les comptes de l'user
         
         
-        JLabel choiceOperationLabel = new JLabel("SÃ©lectionner l'opÃ©ration dÃ©sirer");
+        JLabel choiceOperationLabel = new JLabel("Sélectionner l'opération désirée");
         JComboBox choiceOperation = new JComboBox();
 		//choiceOperation.addItem("Select");
 		choiceOperation.addItem("Ajouter");
 		choiceOperation.addItem("Retirer");
-        
+
         JPanel amountTransactionPanel = new JPanel();
-        
+
         JLabel amountTransactionLabel = new JLabel("Montant");
-        
+
         JTextField amountTransactionTextField = new JTextField();
         amountTransactionTextField.setColumns(12);
-        
-        
+
+
         JPanel validationPanel = new JPanel();
-        
+
         JButton validationButton = new JButton("Validate transaction");
-        
+
         labelWelcomePanel.add(welcomeLabel, BorderLayout.CENTER);
-        
+
         choiceAccountPanel.add(choiceOperationLabel);
         choiceAccountPanel.add(choiceOperation);
         choiceAccountPanel.add(choiceAccountLabel);
         choiceAccountPanel.add(choiceAccountCombo);
- 
+
         amountTransactionPanel.add(amountTransactionLabel);
         amountTransactionPanel.add(amountTransactionTextField);
-        
+
         validationPanel.add(validationButton);
-        
+
         ColumnPanel.add(labelWelcomePanel);
         ColumnPanel.add(emptyPanel = new JPanel());
         ColumnPanel.add(choiceAccountPanel);
