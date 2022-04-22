@@ -29,6 +29,7 @@ public class BankView extends JPanel{
 		JMenuItem menuItemHome = new JMenuItem("Home");
 		JMenuItem menuItemListComptes = new JMenuItem("My Accounts");
 		JMenuItem menuItemAddComptes = new JMenuItem("Add Account");
+		JMenuItem menuItemTransfert = new JMenuItem("Transferts");
 		
 		//PANEL ITEMS
 		JLabel labelApp = new JLabel("Bank management application");
@@ -39,6 +40,7 @@ public class BankView extends JPanel{
 		options.add(menuItemHome);
 		comptes.add(menuItemListComptes);
 		comptes.add(menuItemAddComptes);
+		comptes.add(menuItemTransfert);
 		menuBar.add(options);
 		menuBar.add(comptes);
 		
@@ -117,6 +119,16 @@ public class BankView extends JPanel{
 
 			public void actionPerformed(ActionEvent e) {
 				AddAccount test = new AddAccount (frame, cont);
+				frame.setContentPane(test);
+				frame.repaint();
+				frame.revalidate();
+			};
+		});
+		
+		menuItemTransfert.addActionListener(new ActionListener () {
+
+			public void actionPerformed(ActionEvent e) {
+				BankTransfert test = new BankTransfert (frame, cont);
 				frame.setContentPane(test);
 				frame.repaint();
 				frame.revalidate();
