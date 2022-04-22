@@ -31,7 +31,8 @@ public class BankBeneficiaryController {
         return false;
     }
 
-    public static void removeBeneciary(int idAccount) throws EOFException, SQLException {
+    public static void removeBeneciary(String accountName) throws EOFException, SQLException {
+        int idAccount = new BankAccountController().getBankAccountIdByName(accountName);
         Connexion conn = new Connexion();
 		Connection sql = conn.getConnexion();
 		Statement state = sql.createStatement();
