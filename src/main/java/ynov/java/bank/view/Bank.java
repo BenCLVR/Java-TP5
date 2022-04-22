@@ -39,7 +39,7 @@ public class Bank extends JFrame{
 		//FORM AUTH & GRID AUTH
 		JPanel panelFormAuth = new JPanel();
 		
-		JLabel labelpseudo = new JLabel("Name");
+		JLabel labelpseudo = new JLabel("Lastname");
 		final JTextField pseudo = new JTextField(10);
 		JLabel labelpw = new JLabel("Password");
 		final JTextField password = new JTextField(10);
