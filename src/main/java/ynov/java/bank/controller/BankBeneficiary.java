@@ -30,8 +30,17 @@ public class BankBeneficiary {
         return true;
     }
 
+    public static void removeBeneciary(int idAccount) throws EOFException, SQLException {
+        Connexion conn = new Connexion();
+		Connection sql = conn.getConnexion();
+		Statement state = sql.createStatement();
+
+        state.executeUpdate("DELETE FROM beneficiary WHERE id_account_benef = '"+idAccount+"'");
+		sql.close();
+    }
+
     // remove beneficiary
-    
+
 
     public static List<BankAccount> getBankAccountBeneficiariesByUserId(int userId) throws EOFException, SQLException {
         List<Integer> accountIds = new ArrayList<Integer>();
