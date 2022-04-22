@@ -37,20 +37,20 @@ public class User {
 		this.bankAccounts = bankAccounts;
 	}
 
-	public String getNom() {
+	public String getLastname() {
 		return lastname;
 	}
 
-	public void setNom(String nom) {
-		this.lastname = nom;
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
 	}
 
-	public String getPseudo() {
+	public String getFirstname() {
 		return firstname;
 	}
 
-	public void setPseudo(String pseudo) {
-		this.firstname = pseudo;
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
 	}
 
 	public String getPassword() {
