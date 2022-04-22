@@ -8,7 +8,7 @@ public class BankTrades {
 	User user;
 	BankAccount bankAccount;
 	BankTradesType type;
-	
+
 	public int getId() {
 		return id;
 	}
@@ -67,7 +67,6 @@ public class BankTrades {
 
 	double amount;
 
-
 	public BankTrades(User user, BankTradesType type, double amount) {
 		// this.user_id = userId;
 		this.user = user;
@@ -78,7 +77,7 @@ public class BankTrades {
 	public static BankTradesType getBankTradesTypeFromString(String str) {
 		if (str.equals("ADD")) {
 			return BankTradesType.ADD;
-		} else if(str.equals("REMOVE")) {
+		} else if (str.equals("REMOVE")) {
 			return BankTradesType.REMOVE;
 		} else {
 			return BankTradesType.TRANSFERT;
