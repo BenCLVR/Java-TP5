@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.postgresql.shaded.com.ongres.scram.common.bouncycastle.pbkdf2.Integers;
+
 import ynov.java.bank.modele.BankAccount;
 import ynov.java.bank.modele.BankAccountType;
 
@@ -56,21 +58,34 @@ public class BankAccountController {
 		Connection sql = conn.getConnexion();
 		Statement bankAccountRequest = sql.createStatement();
 
-		ResultSet result = bankAccountRequest
-				.executeQuery("SELECT name, amount, types, id FROM accounts WHERE id IN('" + BAIds + "')");
-
-		String name = "";
-		double amount = 0;
-		int id = 0;
-
 		List<BankAccount> BAList = new ArrayList<BankAccount>();
-		while (result.next()) {
-			name = result.getString("name");
-			amount = result.getDouble("amount");
-			id = result.getInt("id");
-			BAList.add(new BankAccount(id, name, BankAccountType.CURRENT, amount));
+
+		if (BAIds.size() > 0) {
+			String str = "";
+
+			for (int i = 0; i < BAIds.size(); i++) {
+				if (new Integer(i).equals(BAIds.size() - 1)) {
+					str = str.concat(BAIds.get(i).toString());
+				} else {
+					str = str.concat(BAIds.get(i).toString() + ",");
+				}
+			}
+
+			ResultSet result = bankAccountRequest
+					.executeQuery("SELECT name, amount, types, id FROM accounts WHERE id IN ('" + str + "')");
+
+			String name = "";
+			double amount = 0;
+			int id = 0;
+
+			while (result.next()) {
+				name = result.getString("name");
+				amount = result.getDouble("amount");
+				id = result.getInt("id");
+				BAList.add(new BankAccount(id, name, BankAccountType.CURRENT, amount));
+			}
+			bankAccountRequest.close();
 		}
-		bankAccountRequest.close();
 
 		return BAList;
 
