@@ -10,7 +10,7 @@ import java.util.List;
 
 import ynov.java.bank.modele.BankAccount;
 
-public class BankBeneficiary {
+public class BankBeneficiaryController {
     
 
     public static boolean addBeneciary(int userId, String BAName) throws EOFException, SQLException {
