@@ -19,6 +19,15 @@ public class BankOperationController {
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * Permet d'ajouter ou retirer de l'argent
+	 * @param id_user
+	 * @param id_account
+	 * @param amount
+	 * @param BTType
+	 * @throws EOFException
+	 * @throws SQLException
+	 */
 	public void createOperation(int id_user, int id_account, double amount, BankTradesType BTType)
 			throws EOFException, SQLException {
 		Connexion conn = new Connexion();
@@ -31,30 +40,59 @@ public class BankOperationController {
 		BankAccount account = BankAccountController.getBankAccountById(id_account);
 		this.updateAccountAmountByAccountId(account, amount, BTType);
 	}
-	public void createOperation(int id_user, int id_account, double amount, BankTradesType BTType, BankTradesType BTTypeCalc)
+
+	/**
+	 * Permet d'ajouter ou retirer de l'argent
+	 * 
+	 * on differencie la méthode pour les virements qui nous permet de pouvoir inserer le bon enum (TRANSFERT) en base
+	 * tout en gardant la meme logique de calcul
+	 * @param id_user
+	 * @param id_account
+	 * @param amount
+	 * @param BTTypeCalc
+	 * @param BTType
+	 * @throws EOFException
+	 * @throws SQLException
+	 */
+	public void createOperation(int id_user, int id_account, double amount, BankTradesType BTTypeCalc, BankTradesType BTType)
 			throws EOFException, SQLException {
 		Connexion conn = new Connexion();
 		Connection sql = conn.getConnexion();
 		Statement state = sql.createStatement();
 		state.executeUpdate("INSERT INTO operation (id_user, amount, types, id_account) VALUES ('" + id_user + "','"
-				+ amount + "','" + BTTypeCalc + "','" + id_account + "')");
+				+ amount + "','" + BTType + "','" + id_account + "')");
 		sql.close();
 
 		BankAccount account = BankAccountController.getBankAccountById(id_account);
-		this.updateAccountAmountByAccountId(account, amount, BTType);
+
+		this.updateAccountAmountByAccountId(account, amount, BTTypeCalc);
 	}
 
-	// private boolean isBeneficiary(userId, accountid)
-	// // if si current user n'a pas le beneficiaire
-	// if(BTType.equals(BTType.TRANSFERT) && !this.isBeneficiary(userId, accountid))
-	// return false;
-
-	public void createTransfert(int userId, int debitAccount, String depositAccountName, double amount) throws EOFException, SQLException {
+	/**
+	 * Créer un virement
+	 * @param userId
+	 * @param debitAccount
+	 * @param depositAccountName
+	 * @param amount
+	 * @throws EOFException
+	 * @throws SQLException
+	 */
+	public boolean createTransfert(int userId, int debitAccount, String depositAccountName, double amount) throws EOFException, SQLException {
 		int depositAccountId = new BankAccountController().getBankAccountIdByName(depositAccountName);
-		createOperation(userId, debitAccount, amount, BankTradesType.REMOVE);
-		createOperation(userId, depositAccountId, amount, BankTradesType.ADD);
+		// check if user have l'argent sur son compte
+		createOperation(userId, debitAccount, amount, BankTradesType.REMOVE, BankTradesType.TRANSFERT);
+		createOperation(userId, depositAccountId, amount, BankTradesType.ADD, BankTradesType.TRANSFERT);
+		return true;
 	}
 
+	/**
+	 * Met à jour la somme disponible sur le compte
+	 * @param account
+	 * @param amount
+	 * @param BTType
+	 * @throws EOFException
+	 * @throws SQLException
+	 */
 	private void updateAccountAmountByAccountId(BankAccount account, double amount, BankTradesType BTType)
 			throws EOFException, SQLException {
 		Connexion conn = new Connexion();
@@ -78,6 +116,13 @@ public class BankOperationController {
 		sql.close();
 	}
 
+	/**
+	 * Liste toutes les opérations d'un compte bancaire via l'id de ce compte
+	 * @param accountId
+	 * @return
+	 * @throws EOFException
+	 * @throws SQLException
+	 */
 	public List<BankTrades> getOperationsByAccountId(int accountId) throws EOFException, SQLException {
 		Connexion conn = new Connexion();
 		Connection sql = conn.getConnexion();

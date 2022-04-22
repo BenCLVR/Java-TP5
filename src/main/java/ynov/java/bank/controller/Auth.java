@@ -17,6 +17,16 @@ public class Auth {
 	Connexion conn = new Connexion();
 	public User currentUser = null;
 
+	/**
+	 * créer un nouvel utilisateur
+	 * 
+	 * @param lastname
+	 * @param firstname
+	 * @param pwd
+	 * @return
+	 * @throws EOFException
+	 * @throws SQLException
+	 */
 	public int createUser(String lastname, String firstname, String pwd) throws EOFException, SQLException {
 		Connection sql = conn.getConnexion();
 		Statement state = sql.createStatement();
@@ -27,6 +37,16 @@ public class Auth {
 		return result;
 	}
 
+	/**
+	 * Connecte un utilisateur et l'enregistre en global afin d'y avoir accès
+	 * partout dans l'app
+	 * 
+	 * @param name
+	 * @param pwd
+	 * @return
+	 * @throws EOFException
+	 * @throws SQLException
+	 */
 	public boolean LogUser(String name, String pwd) throws EOFException, SQLException {
 		String Rpwd = new String();
 		Connection sql = conn.getConnexion();
@@ -74,6 +94,13 @@ public class Auth {
 		return true;
 	}
 
+	/**
+	 * rafraichi les données de l'utilisateur connecté
+	 * nécessaire après chaque opérations sur les comptes ou les operations
+	 * 
+	 * @throws EOFException
+	 * @throws SQLException
+	 */
 	public void refreshBankAccount() throws EOFException, SQLException {
 		List<Integer> BAIds = BankAccountController
 				.getBankAccountIdsByUser(this.currentUser.getId());
@@ -86,6 +113,9 @@ public class Auth {
 		}
 	}
 
+	/**
+	 * déconnecte l'utilisateur
+	 */
 	public void signOut() {
 		this.currentUser = null;
 	}

@@ -15,6 +15,13 @@ import ynov.java.bank.modele.BankAccountType;
 
 public class BankAccountController {
 
+	/**
+	 * Récupère les ids des compte bancaire d'un utilisateur grace à l'id de l'utilisateur
+	 * @param userId
+	 * @return
+	 * @throws EOFException
+	 * @throws SQLException
+	 */
 	public static List<Integer> getBankAccountIdsByUser(int userId) throws EOFException, SQLException {
 		Connexion conn = new Connexion();
 		Connection sql = conn.getConnexion();
@@ -31,6 +38,13 @@ public class BankAccountController {
 		return accountIds;
 	}
 
+	/**
+	 * Récupère les informations du compte bancaire via l'id du compte bancaire
+	 * @param BAId
+	 * @return
+	 * @throws EOFException
+	 * @throws SQLException
+	 */
 	public static BankAccount getBankAccountById(Integer BAId) throws EOFException, SQLException {
 		Connexion conn = new Connexion();
 		Connection sql = conn.getConnexion();
@@ -53,6 +67,13 @@ public class BankAccountController {
 
 	}
 
+	/**
+	 * Récupère les informations de plusieurs comptes bancaire via leurs ids
+	 * @param BAIds
+	 * @return
+	 * @throws EOFException
+	 * @throws SQLException
+	 */
 	public static List<BankAccount> getBankAccountByIds(List<Integer> BAIds) throws EOFException, SQLException {
 		Connexion conn = new Connexion();
 		Connection sql = conn.getConnexion();
@@ -91,6 +112,17 @@ public class BankAccountController {
 
 	}
 
+	/**
+	 * Vérifie la possibilité de créé un compte
+	 * Créé le compte en base
+	 * Ajoute un compte bancaire à un utilisateur via table pivot
+	 * @param BAName
+	 * @param BAType
+	 * @param userId
+	 * @return
+	 * @throws EOFException
+	 * @throws SQLException
+	 */
 	public boolean createAccount(String BAName, BankAccountType BAType, int userId)
 			throws EOFException, SQLException {
 
@@ -112,6 +144,14 @@ public class BankAccountController {
 
 	}
 
+	/**
+	 * Lie un compte joint à un autre utilisateur
+	 * @param BAName
+	 * @param userId
+	 * @return
+	 * @throws EOFException
+	 * @throws SQLException
+	 */
 	public boolean linkAccountWithUserId(String BAName, int userId) throws EOFException, SQLException {
 		boolean canCreateAccount = this.canCreateAccountByUserId(userId, BankAccountType.JOINT);
 		if (!canCreateAccount) {
@@ -127,7 +167,6 @@ public class BankAccountController {
 		state.executeUpdate("INSERT INTO linkaccount (id_user, id_account) VALUES ('" + userId + "', '" + BAId + "')");
 		sql.close();
 		return true;
-
 	}
 
 	private void addBankAccount(String accountName, BankAccountType BAType) throws EOFException, SQLException {
